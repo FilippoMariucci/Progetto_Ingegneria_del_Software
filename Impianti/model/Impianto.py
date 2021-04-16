@@ -1,12 +1,13 @@
 class Impianto():
 
    # Costruttore con le informazioni di un impianto
-    def __init__(self, id, nome, tipo, posizione, prezzo):
+    def __init__(self, id, nome, tipo, posizione, prezzo) :
         super(Impianto, self).__init__()
         self.id = id
         self.nome = nome
-        self.posizione = posizione
+
         self.tipo = tipo
+        self.posizione = posizione
         self.prezzo = prezzo
         self.disponibilità = True
 
