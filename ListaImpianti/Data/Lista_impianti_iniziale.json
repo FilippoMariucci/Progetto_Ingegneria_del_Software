@@ -1,3 +1,297 @@
-{
 
-}
+[
+  {
+    "id": "Impianto_1",
+    "nome": "Campo da Calcio a 11",
+    "tipo": "Impianto Sportivo",
+    "Posizione": "Esterno",
+    "Prezzo": 110.0
+  },
+
+  {
+    "id": "Impianto_2",
+    "nome": "Campo da beach volley",
+    "tipo": "Impianto Sportivo",
+    "Posizione": "Esterno",
+    "Prezzo": 20.0
+  },
+
+  {
+    "id": "Impianto_3",
+    "nome": "Campo da rugby",
+    "tipo": "Impianto Sportivo",
+    "Posizione": "Esterno",
+    "Prezzo": 150.0
+  },
+
+  {
+    "id": "Impianto_4",
+    "nome": "Campo da pallacanestro",
+    "tipo": "Impianto Sportivo",
+    "Posizione": "Esterno",
+    "Prezzo": 50.0
+  },
+
+  {
+    "id": "Impianto_5",
+    "nome": "Sala pesi",
+    "tipo": "Impianto Sportivo",
+    "Posizione": "Interno",
+    "Prezzo": 7.0
+  },
+  {
+    "id": "Impianto_6",
+    "nome": "Piscina",
+    "tipo": "Impianto Sportivo",
+    "Posizione": "Interno",
+    "Prezzo": 10.0
+  },
+
+    {
+    "id": "Impianto_7",
+    "nome": "Campo polivalente (Calcio a 5, pallacanestro, pallavolo)",
+    "tipo": "Impianto sportivo",
+    "Posizione": "Interno",
+    "Prezzo": 50.0
+  },
+
+  {
+    "id": "Armadietto_1",
+    "nome": "Armadietto 1",
+    "tipo": "Armadietto",
+    "Posizione": "Interno",
+    "Prezzo": 2.0
+  },
+
+  {
+    "id": "Armadietto_2",
+    "nome": "Armadietto 2",
+    "tipo": "Armadietto",
+    "Posizione": "Interno",
+    "Prezzo": 2.0
+  },
+
+  {
+    "id": "Armadietto_3",
+    "nome": "Armadietto 3",
+    "tipo": "Armadietto",
+    "Posizione": "Interno",
+    "Prezzo": 2.0
+  },
+
+  {
+    "id": "Armadietto_4",
+    "nome": "Armadietto 4",
+    "tipo": "Armadietto",
+    "Posizione": "Interno",
+    "Prezzo": 2.0
+  },
+
+  {
+    "id": "Armadietto_5",
+    "nome": "Armadietto 5",
+    "tipo": "Armadietto",
+    "Posizione": "Interno",
+    "Prezzo": 2.0
+  },
+
+  {
+    "id": "Armadietto_6",
+    "nome": "Armadietto 6",
+    "tipo": "Armadietto",
+    "Posizione": "Interno",
+    "Prezzo": 2.0
+  },
+
+  {
+    "id": "Armadietto_7",
+    "nome": "Armadietto 7",
+    "tipo": "Armadietto",
+    "Posizione": "Interno",
+    "Prezzo": 2.0
+  },
+
+  {
+    "id": "Armadietto_8",
+    "nome": "Armadietto 8",
+    "tipo": "Armadietto",
+    "Posizione": "Interno",
+    "Prezzo": 2.0
+  },
+
+  {
+    "id": "Armadietto_9",
+    "nome": "Armadietto 9",
+    "tipo": "Armadietto",
+    "Posizione": "Interno",
+    "Prezzo": 2.0
+  },
+
+  {
+    "id": "Armadietto_10",
+    "nome": "Armadietto 10",
+    "tipo": "Armadietto",
+    "Posizione": "Interno",
+    "Prezzo": 2.0
+  },
+
+  {
+    "id": "Armadietto_11",
+    "nome": "Armadietto 11",
+    "tipo": "Armadietto",
+    "Posizione": "Interno",
+    "Prezzo": 2.0
+  },
+
+  {
+    "id": "Armadietto_12",
+    "nome": "Armadietto 12",
+    "tipo": "Armadietto",
+    "Posizione": "Interno",
+    "Prezzo": 2.0
+  },
+
+  {
+    "id": "Armadietto_13",
+    "nome": "Armadietto 13",
+    "tipo": "Armadietto",
+    "Posizione": "Interno",
+    "Prezzo": 2.0
+  },
+
+  {
+    "id": "Armadietto_14",
+    "nome": "Armadietto 14",
+    "tipo": "Armadietto",
+    "Posizione": "Interno",
+    "Prezzo": 2.0
+  },
+
+  {
+    "id": "Armadietto_15",
+    "nome": "Armadietto 15",
+    "tipo": "Armadietto",
+    "Posizione": "Interno",
+    "Prezzo": 2.0
+  },
+
+  {
+    "id": "Armadietto_16",
+    "nome": "Armadietto 16",
+    "tipo": "Armadietto",
+    "Posizione": "Interno",
+    "Prezzo": 2.0
+  },
+
+  {
+    "id": "Armadietto_17",
+    "nome": "Armadietto 17",
+    "tipo": "Armadietto",
+    "Posizione": "Interno",
+    "Prezzo": 2.0
+  },
+
+  {
+    "id": "Armadietto_18",
+    "nome": "Armadietto 18",
+    "tipo": "Armadietto",
+    "Posizione": "Interno",
+    "Prezzo": 2.0
+  },
+
+  {
+    "id": "Armadietto_19",
+    "nome": "Armadietto 19",
+    "tipo": "Armadietto",
+    "Posizione": "Interno",
+    "Prezzo": 2.0
+  },
+
+  {
+    "id": "Armadietto_20",
+    "nome": "Armadietto 20",
+    "tipo": "Armadietto",
+    "Posizione": "Interno",
+    "Prezzo": 2.0
+  },
+
+  {
+    "id": "Armadietto_21",
+    "nome": "Armadietto 21",
+    "tipo": "Armadietto",
+    "Posizione": "Interno",
+    "Prezzo": 2.0
+  },
+
+  {
+    "id": "Armadietto_22",
+    "nome": "Armadietto 22",
+    "tipo": "Armadietto",
+    "Posizione": "Interno",
+    "Prezzo": 2.0
+  },
+
+  {
+    "id": "Armadietto_23",
+    "nome": "Armadietto 23",
+    "tipo": "Armadietto",
+    "Posizione": "Interno",
+    "Prezzo": 2.0
+  },
+
+  {
+    "id": "Armadietto_24",
+    "nome": "Armadietto 24",
+    "tipo": "Armadietto",
+    "Posizione": "Interno",
+    "Prezzo": 2.0
+  },
+
+  {
+    "id": "Armadietto_25",
+    "nome": "Armadietto 25",
+    "tipo": "Armadietto",
+    "Posizione": "Interno",
+    "Prezzo": 2.0
+  },
+
+  {
+    "id": "Armadietto_26",
+    "nome": "Armadietto 26",
+    "tipo": "Armadietto",
+    "Posizione": "Interno",
+    "Prezzo": 2.0
+  },
+
+  {
+    "id": "Armadietto_27",
+    "nome": "Armadietto 27",
+    "tipo": "Armadietto",
+    "Posizione": "Interno",
+    "Prezzo": 2.0
+  },
+
+  {
+    "id": "Armadietto_28",
+    "nome": "Armadietto 28",
+    "tipo": "Armadietto",
+    "Posizione": "Interno",
+    "Prezzo": 2.0
+  },
+
+  {
+    "id": "Armadietto_29",
+    "nome": "Armadietto 29",
+    "tipo": "Armadietto",
+    "Posizione": "Interno",
+    "Prezzo": 2.0
+  },
+
+  {
+    "id": "Armadietto_30",
+    "nome": "Armadietto 30",
+    "tipo": "Armadietto",
+    "Posizione": "Interno",
+    "Prezzo": 2.0
+  }
+]
