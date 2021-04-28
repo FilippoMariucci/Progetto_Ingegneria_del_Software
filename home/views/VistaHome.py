@@ -1,4 +1,6 @@
-from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton, QSizePolicy
+from PyQt5.QtCore import QSize
+from PyQt5.QtGui import QImage, QBrush, QPalette
+from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton, QSizePolicy, QLabel
 
 from ListaImpianti.view.VistaListaImpianti import VistaListaImpianti
 
@@ -7,6 +9,17 @@ class VistaHome(QWidget):
     def __init__(self, parent=None):
         super(VistaHome, self).__init__(parent)
         grid_layout = QGridLayout()
+
+        oImage = QImage("test.png")
+        sImage = oImage.scaled(QSize(400, 300))  # resize Image to widgets size
+        palette = QPalette()
+        palette.setBrush(10, QBrush(sImage))  # 10 = Windowrole
+        self.setPalette(palette)
+
+        self.label = QLabel("Test", self)  # test, if it"s really backgroundimage
+        self.label.setGeometry(50, 50, 200, 50)
+
+        self.show()
 
         grid_layout.addWidget(self.get_generic_button("Lista Impianti", self.go_lista_impianti), 0, 0)
         grid_layout.addWidget(self.get_generic_button("Lista Clienti", self.go_lista_clienti), 0, 1)

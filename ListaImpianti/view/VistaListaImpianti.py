@@ -1,5 +1,8 @@
+import sys
+
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton, QSizePolicy, QHBoxLayout, QListView, QVBoxLayout
+from PyQt5.uic.properties import QtGui
 
 from ListaImpianti.controller.ControllerListaImpianti import ControllerListaImpianti
 
@@ -23,6 +26,7 @@ class VistaListaImpianti(QWidget):
             self.listview_Model.appendRow(item)
         self.list_view.setModel(self.listview_Model)
         h_layout.addWidget(self.list_view)
+
 
         buttons_layout = QVBoxLayout()
         open_buttons = QPushButton("Apri")
