@@ -29,7 +29,7 @@ class ListaClienti():
     def get_lista_clienti(self):
         return self.lista_clienti
 
-    # Metodo che permette di salvare la lsita clienti in un file .pickle
+    # Metodo che permette di salvare la lsita clienti in un file .pickle con il protocollo
     def save_data(self):
         with open('listaclienti/data/lista_clienti_salvata.pickle', 'wb') as handle:
             pickle.dump(self.lista_clienti, handle, pickle.HIGHEST_PROTOCOL)
