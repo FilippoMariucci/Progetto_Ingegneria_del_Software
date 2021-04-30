@@ -1,9 +1,9 @@
-import sys
+
 
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton, QSizePolicy, QHBoxLayout, QListView, QVBoxLayout
-from PyQt5.uic.properties import QtGui
 
+from Impianti.views.VistaImpianti import VistaImpianti
 from ListaImpianti.controller.ControllerListaImpianti import ControllerListaImpianti
 
 
@@ -30,6 +30,7 @@ class VistaListaImpianti(QWidget):
 
         buttons_layout = QVBoxLayout()
         open_buttons = QPushButton("Apri")
+        open_buttons.clicked.connect(self.show_selected_info)
         buttons_layout.addWidget(open_buttons)
         buttons_layout.addStretch()
         h_layout.addLayout(buttons_layout)
@@ -42,5 +43,12 @@ class VistaListaImpianti(QWidget):
         print("On close")
         self.Controller.save_data()
         event.accept()
+
+    # Metodo che permette di visualizzare un impianto attraverso l'indice
+    def show_selected_info(self):
+        selected = self.list_view.selectedIndexes()[0].row()
+        impianto_selezionato = self.Controller.get_impianto_by_index(selected)
+        self.vista_impinti= VistaImpianti(impianto_selezionato)
+        self.vista_impinti.show()
 
 
