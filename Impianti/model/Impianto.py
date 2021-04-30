@@ -5,7 +5,6 @@ class Impianto():
         super(Impianto, self).__init__()
         self.id = id
         self.nome = nome
-
         self.tipo = tipo
         self.posizione = posizione
         self.prezzo = prezzo
