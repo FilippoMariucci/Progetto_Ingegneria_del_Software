@@ -1,7 +1,8 @@
 from PyQt5.QtCore import QSize
-from PyQt5.QtGui import QImage, QBrush, QPalette, QIcon
-from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton, QSizePolicy, QLabel, QHBoxLayout, QVBoxLayout
+from PyQt5.QtGui import QImage, QBrush, QPalette
+from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton
 
+from ListaClienti.views.VistaListaClienti import VistaListaClienti
 from ListaImpianti.view.VistaListaImpianti import VistaListaImpianti
 
 
@@ -44,7 +45,8 @@ class VistaHome(QWidget):
         self.vista_lista_impanti.show()
 
     def go_lista_clienti(self):
-        pass
+        self.vist_lista_clienti = VistaListaClienti()
+        self.vist_lista_clienti.show()
 
     def go_lista_dipendenti(self):
         pass

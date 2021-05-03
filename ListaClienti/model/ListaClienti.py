@@ -6,8 +6,8 @@ class ListaClienti():
     def __init__(self):
         super(ListaClienti, self).__init__()
         self.lista_clienti = []
-        if os.path.isfile('listaclienti/data/lista_clienti_salvata.pickle'):
-            with open('listaclienti/data/lista_clienti_salvata.pickle', 'rb') as f:
+        if os.path.isfile('ListaClienti/data/lista_clienti_salvata.pickle'):
+            with open('ListaClienti/data/lista_clienti_salvata.pickle', 'rb') as f:
                 self.lista_clienti = pickle.load(f)
     #Metodo che permette di aggiungere un cliente nell'apposita lista
     def aggiungi_cliente(self, cliente):
@@ -31,5 +31,5 @@ class ListaClienti():
 
     # Metodo che permette di salvare la lsita clienti in un file .pickle con il protocollo
     def save_data(self):
-        with open('listaclienti/data/lista_clienti_salvata.pickle', 'wb') as handle:
+        with open('Listaclienti/data/lista_clienti_salvata.pickle', 'wb') as handle:
             pickle.dump(self.lista_clienti, handle, pickle.HIGHEST_PROTOCOL)

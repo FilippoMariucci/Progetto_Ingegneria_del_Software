@@ -1,9 +1,9 @@
 from ListaClienti.model.ListaClienti import ListaClienti
 
 
-class ControllorListaClienti():
+class ControllerListaClienti():
     def __init__(self):
-        super(ControllorListaClienti, self).__init__()
+        super(ControllerListaClienti, self).__init__()
         self.model = ListaClienti()
 
 # Metodo che permette di aggiungere un cliente
