@@ -15,10 +15,9 @@ class VistaInserisciCliente(QWidget):
         self.get_form_entry("Nome")
         self.get_form_entry("Cognome")
         self.get_form_entry("Codice Fiscale")
-        self.get_form_entry("Indirizzo")
-        self.get_form_entry("Email")
+
         self.get_form_entry("Telefono")
-        self.get_form_entry("Età")
+        self.get_form_entry("Data di nascita")
 
         self.v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
@@ -38,14 +37,13 @@ class VistaInserisciCliente(QWidget):
     def add_cliente(self):
         nome = self.info["Nome"].text()
         cognome = self.info["Cognome"].text()
-        cf = self.info["Codice Fiscale"].text()
-        indirizzo = self.info["Indirizzo"].text()
-        email = self.info["Email"].text()
+        codice_fiscale = self.info["Codice Fiscale"].text()
+
         telefono = self.info["Telefono"].text()
-        eta = self.info["Età"].text()
-        if nome == "" or cognome == "" or cf == "" or indirizzo == "" or email == "" or telefono == "" or eta == "":
+        data_di_nascita = self.info["Data di nascita"].text()
+        if nome == "" or cognome == "" or codice_fiscale == "" or telefono == "" or data_di_nascita == "":
             QMessageBox.critical(self, 'Errore', 'Per favore, inserisci tutte le informazioni richieste', QMessageBox.Ok, QMessageBox.Ok)
         else:
-            self.controller.aggiungi_cliente(Cliente((nome+cognome).lower(), nome, cognome, cf, indirizzo, email, telefono, eta))
+            self.controller.aggiungi_cliente(Cliente((nome+cognome).lower(), nome, cognome, codice_fiscale, telefono, data_di_nascita))
             self.callback()
             self.close()

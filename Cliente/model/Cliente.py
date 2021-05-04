@@ -1,14 +1,13 @@
 class Cliente():
-    def __init__(self, id, nome, cognome, codice_fiscale,indirizzo, email, telefono, eta):
+    def __init__(self, id, nome, cognome, codice_fiscale, telefono,data_di_nascita):
         super(Cliente, self).__init__()
         self.id = id
         self.nome = nome
         self.cognome = cognome
         self.codice_fiscale = codice_fiscale
-        self.indirizzo= indirizzo
-        self.emil=email
+
         self.telefono = telefono
-        self.eta= eta
+        self.data_di_nascita= data_di_nascita
         self.abbonamento = None
 
     #Metodo per aggiunngere un abbonamento ad un cliente
