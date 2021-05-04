@@ -15,7 +15,6 @@ class VistaInserisciCliente(QWidget):
         self.get_form_entry("Nome")
         self.get_form_entry("Cognome")
         self.get_form_entry("Codice Fiscale")
-
         self.get_form_entry("Telefono")
         self.get_form_entry("Data di nascita")
 
@@ -38,7 +37,6 @@ class VistaInserisciCliente(QWidget):
         nome = self.info["Nome"].text()
         cognome = self.info["Cognome"].text()
         codice_fiscale = self.info["Codice Fiscale"].text()
-
         telefono = self.info["Telefono"].text()
         data_di_nascita = self.info["Data di nascita"].text()
         if nome == "" or cognome == "" or codice_fiscale == "" or telefono == "" or data_di_nascita == "":

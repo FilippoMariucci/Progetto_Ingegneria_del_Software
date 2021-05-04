@@ -5,7 +5,6 @@ class Cliente():
         self.nome = nome
         self.cognome = cognome
         self.codice_fiscale = codice_fiscale
-
         self.telefono = telefono
         self.data_di_nascita= data_di_nascita
         self.abbonamento = None
