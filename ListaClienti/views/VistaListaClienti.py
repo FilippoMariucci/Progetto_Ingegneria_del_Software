@@ -1,6 +1,7 @@
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QListView, QVBoxLayout, QPushButton
 
+from Cliente.views.VistaCliente import VistaCliente
 from ListaClienti.controller.ControllerListaClienti import ControllerListaClienti
 from ListaClienti.views.VistaInserisciCliente import VistaInserisciCliente
 
@@ -18,7 +19,7 @@ class VistaListaClienti(QWidget):
 
         buttons_layout = QVBoxLayout()
         open_button = QPushButton("Apri")
-        # open_button.clicked.connect()
+        open_button.clicked.connect(self.show_selected_info)
         buttons_layout.addWidget(open_button)
 
         new_button = QPushButton("Nuovo")
@@ -28,15 +29,20 @@ class VistaListaClienti(QWidget):
         h_layout.addLayout(buttons_layout)
 
         self.setLayout(h_layout)
-        self.resize(600,300)
+        self.resize(600, 300)
         self.setWindowTitle("Lista Clienti")
+
+    # Funzione che mostra a schermo le informazioni del cliente selezionato
+    def show_selected_info(self):
+        selected = self.list_view.selectedIndexes()[0].row()
+        cliente_selezionato = self.controller.get_cliente_by_index(selected)
+        self.vista_cliente = VistaCliente(cliente_selezionato, self.controller.elimina_cliente_by_id, self.update_ui)
+        self.vista_cliente.show()
 
     def show_new_cliente(self):
         self.vista_inserisci_cliente = VistaInserisciCliente(self.controller, self.update_ui)
         self.vista_inserisci_cliente.show()
 
-    # Metodo che verrà richiamato ogni volta che verra aggiornata una lista inserendo o rimuovendo un cliente.
-    # Vado ad aggiornare la visualizzazione a schermo.
     def update_ui(self):
         self.listview_model = QStandardItemModel(self.list_view)
         for cliente in self.controller.get_lista_dei_clienti():
@@ -49,6 +55,5 @@ class VistaListaClienti(QWidget):
             self.listview_model.appendRow(item)
         self.list_view.setModel(self.listview_model)
 
-    # Metodo che permette alla chiusura della finestra di salvare i dati
     def closeEvent(self, event):
         self.controller.save_data()

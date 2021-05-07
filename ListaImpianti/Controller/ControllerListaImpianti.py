@@ -11,7 +11,7 @@ class ControllerListaImpianti():
     def get_lista_degli_impianti(self):
         return self.model.get_lista_impianti()
 
-    #Funzione che restituisce l'impianto attraverso un indice passatogli come riferimento
+    #Funzione che restituisce l'Impianti attraverso un indice passatogli come riferimento
     def get_impianto_by_index(self, index):
         return self.model.get_impianto_by_index(index)
 

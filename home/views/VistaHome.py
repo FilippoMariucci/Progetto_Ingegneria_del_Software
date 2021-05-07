@@ -3,6 +3,7 @@ from PyQt5.QtGui import QImage, QBrush, QPalette
 from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton
 
 from ListaClienti.views.VistaListaClienti import VistaListaClienti
+from ListaDipendenti.views.VistaListaDipendenti import VistaListaDipendenti
 from ListaImpianti.view.VistaListaImpianti import VistaListaImpianti
 
 
@@ -30,7 +31,7 @@ class VistaHome(QWidget):
 
         self.setLayout(grid_layout)
         self.resize(800, 700)
-        self.setWindowTitle('Gestore Impianto')
+        self.setWindowTitle('Gestore Impianti')
 
     def get_generic_button(self, titolo, on_click):
         button = QPushButton(titolo,self)
@@ -49,7 +50,8 @@ class VistaHome(QWidget):
         self.vist_lista_clienti.show()
 
     def go_lista_dipendenti(self):
-        pass
+        self.vista_lista_dipendenti = VistaListaDipendenti()
+        self.vista_lista_dipendenti.show()
 
     def go_lista_prenotazioni(self):
         pass

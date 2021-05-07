@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QVBoxLayout, QLabel, QSpacerItem, QSizePolicy
 
-from Impianti.Controller.ControllerImpianto import ControllorImpianto
+from Impianti.controller.ControllerImpianto import ControllorImpianto
 
 
 class VistaImpianti(QWidget):

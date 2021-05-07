@@ -23,11 +23,11 @@ class ListaImpianti():
                                                 impianto_iniziale["tipo"],impianto_iniziale["posizione"],
                                                 impianto_iniziale["prezzo"],))
 
-    # Funzione per aggiungere un impianto alla lista
+    # Funzione per aggiungere un Impianti alla lista
     def aggiungi_impianto(self,impianto):
         self.lista_impianti.append(impianto)
 
-    # Funzione per individuare un impianto nella list attraverso un indicatore
+    # Funzione per individuare un Impianti nella list attraverso un indicatore
     def get_impianto_by_index(self, index):
         return self.lista_impianti[index]
 

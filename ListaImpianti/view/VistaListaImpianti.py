@@ -4,7 +4,7 @@ from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton, QSizePolicy, QHBoxLayout, QListView, QVBoxLayout
 
 from Impianti.views.VistaImpianti import VistaImpianti
-from ListaImpianti.controller.ControllerListaImpianti import ControllerListaImpianti
+from ListaImpianti.Controller.ControllerListaImpianti import ControllerListaImpianti
 
 
 class VistaListaImpianti(QWidget):
@@ -44,7 +44,7 @@ class VistaListaImpianti(QWidget):
         self.Controller.save_data()
         event.accept()
 
-    # Metodo che permette di visualizzare un impianto attraverso l'indice
+    # Metodo che permette di visualizzare un Impianti attraverso l'indice
     def show_selected_info(self):
         selected = self.list_view.selectedIndexes()[0].row()
         impianto_selezionato = self.Controller.get_impianto_by_index(selected)

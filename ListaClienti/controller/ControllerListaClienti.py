@@ -6,7 +6,7 @@ class ControllerListaClienti():
         super(ControllerListaClienti, self).__init__()
         self.model = ListaClienti()
 
-# Metodo che permette di aggiungere un cliente
+# Metodo che permette di aggiungere un Cliente
     def aggiungi_cliente(self, cliente):
         self.model.aggiungi_cliente(cliente)
 
@@ -14,7 +14,11 @@ class ControllerListaClienti():
     def get_lista_dei_clienti(self):
         return self.model.get_lista_clienti()
 
-# Metodo che permette di rimuovere un cliente attraverso il proprio codice identficativo
+    # Funzione che ritorna il cliente selezionato
+    def get_cliente_by_index(self, index):
+        return self.model.get_cliente_by_index(index)
+
+    # Metodo che permette di rimuovere un Cliente attraverso il proprio codice identficativo
     def elimina_cliente_by_id(self, id):
         self.model.rimuovi_cliente_by_id(id)
 
