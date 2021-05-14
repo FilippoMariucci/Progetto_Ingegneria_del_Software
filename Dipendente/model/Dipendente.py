@@ -4,8 +4,8 @@ class Dipendente():
         self.id = id
         self.nome = nome
         self.cognome = cognome
-        self.datanascita = data_di_nascita
-        self.luogonascita = luogo_di_nascita
+        self.data_di_nascita = data_di_nascita
+        self.luogo_di_nascita = luogo_di_nascita
         self.codice_fiscale = codice_fiscale
         self.telefono = telefono
         self.email = email
