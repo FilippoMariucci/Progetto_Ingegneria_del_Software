@@ -34,6 +34,7 @@ class VistaListaClienti(QWidget):
 
     # Funzione che mostra a schermo le informazioni del cliente selezionato
     def show_selected_info(self):
+     if (len(self.list_view.selectedIndexes()) > 0):
         selected = self.list_view.selectedIndexes()[0].row()
         cliente_selezionato = self.controller.get_cliente_by_index(selected)
         self.vista_cliente = VistaCliente(cliente_selezionato, self.controller.elimina_cliente_by_id, self.update_ui)
