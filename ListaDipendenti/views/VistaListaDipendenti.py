@@ -2,6 +2,7 @@ from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QListView, QVBoxLayout, QPushButton
 
 from ListaDipendenti.controller.ControllerListaDipendenti import ControllerListaDipendenti
+from ListaDipendenti.views.VistaInserisciDipendente import VistaInserisciDipendente
 
 
 class VistaListaDipendenti(QWidget):
@@ -20,7 +21,7 @@ class VistaListaDipendenti(QWidget):
         # open_button.clicked.connect()
         buttons_layout.addWidget(open_button)
         new_button = QPushButton("Nuovo")
-        # new_button.clicked.connect()
+        new_button.clicked.connect(self.show_new_dipendente)
         buttons_layout.addWidget(new_button)
         buttons_layout.addStretch()
         h_layout.addLayout(buttons_layout)
@@ -41,6 +42,11 @@ class VistaListaDipendenti(QWidget):
             item.setFont(font)
             self.listview_model.appendRow(item)
         self.list_view.setModel(self.listview_model)
+
+    # Funzione che permette di aprire l'interfaccia di inserimento del dipendente
+    def show_new_dipendente(self):
+        self.vista_inserisci_dipendente = VistaInserisciDipendente(self.controller, self.update_ui)
+        self.vista_inserisci_dipendente.show()
 
     def closeEvent(self, event):
         self.controller.save_data()

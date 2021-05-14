@@ -8,7 +8,7 @@ class ListaDipendenti():
         self.lista_dipendenti = []
         if os.path.isfile('ListaDipendenti/data/lista_dipendenti_salvata.pickle'):
             with open('ListaDipendenti/data/lista_dipendenti_salvata.pickle', 'rb') as f:
-                self.lista_clienti = pickle.load(f)
+                self.lista_dipendenti = pickle.load(f)
 
     # Funzione che permette di aggiungere un dipendente
     def aggiungi_dipendente(self, dipendente):
