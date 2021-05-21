@@ -46,9 +46,10 @@ class VistaListaImpianti(QWidget):
 
     # Metodo che permette di visualizzare un Impianti attraverso l'indice
     def show_selected_info(self):
-        selected = self.list_view.selectedIndexes()[0].row()
-        impianto_selezionato = self.Controller.get_impianto_by_index(selected)
-        self.vista_impinti= VistaImpianti(impianto_selezionato)
-        self.vista_impinti.show()
+        if (len(self.list_view.selectedIndexes()) > 0):
+            selected = self.list_view.selectedIndexes()[0].row()
+            impianto_selezionato = self.Controller.get_impianto_by_index(selected)
+            self.vista_impinti= VistaImpianti(impianto_selezionato)
+            self.vista_impinti.show()
 
 
