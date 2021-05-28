@@ -2,6 +2,7 @@
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton, QSizePolicy, QHBoxLayout, QListView, QVBoxLayout
 
+from attrezzatura.views.VistaAttrezzatura import VistaAttrezzatura
 from listaattrezzatura.controller.ControllerListaAttrezzatura import ControllerListaAttrezzatura
 
 
@@ -47,5 +48,5 @@ class VistaListaAttrezzature(QWidget):
         if (len(self.list_view.selectedIndexes()) > 0):
             selected = self.list_view.selectedIndexes()[0].row()
             attrezzatura_selezionata = self.Controller.get_attrezzatura_by_index(selected)
-            #self.vista_attrezzature= VistaAttrezzatura(attrezzatura_selezionata)
-            #self.vista_impinti.show()
+            self.vista_attrezzature= VistaAttrezzatura(attrezzatura_selezionata)
+            self.vista_attrezzature.show()
