@@ -16,7 +16,6 @@ class VistaListaPrenotazioni(QWidget):
 
         h_layout = QHBoxLayout()
         self.list_view = QListView()
-        self.list_view_2 = QListView
         self.update_ui()
         h_layout.addWidget(self.list_view)
 

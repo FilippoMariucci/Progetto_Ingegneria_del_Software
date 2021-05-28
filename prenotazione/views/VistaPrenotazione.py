@@ -5,10 +5,9 @@ from prenotazione.controller.ControllerPrenotazione import ControllerPrenotazion
 
 
 class VistaPrenotazione(QWidget):
-    def __init__(self, prenotazione, disdici_prenotazione, elimina_callback,  parent=None):
+    def __init__(self, prenotazione, disdici_prenotazione, elimina_callback,   parent=None):
         super(VistaPrenotazione, self).__init__(parent)
         self.controller = ControllerPrenotazione(prenotazione)
-
         self.disdisci_prenotazione = disdici_prenotazione
         self.elimina_callback = elimina_callback
 
@@ -19,6 +18,7 @@ class VistaPrenotazione(QWidget):
         font_nome.setPointSize(30)
         label_nome.setFont(font_nome)
         v_layout.addWidget(label_nome)
+
 
         v_layout.addItem(QSpacerItem(20,40,QSizePolicy.Minimum,QSizePolicy.Expanding))
 
@@ -34,6 +34,12 @@ class VistaPrenotazione(QWidget):
         label_data.setFont(font_data)
         v_layout.addWidget(label_data)
 
+        label_att = QLabel("Attrezzatura: {} {}".format(self.controller.get_attrezzatura_prenotazione().nome,
+                                                        self.controller.get_attrezzatura_prenotazione().prezzo))
+        font_att = label_att.font()
+        font_att.setPointSize(30)
+        label_att.setFont(font_att)
+        v_layout.addWidget(label_att)
 
 
 

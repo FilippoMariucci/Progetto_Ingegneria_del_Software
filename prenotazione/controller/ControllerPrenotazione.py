@@ -1,6 +1,7 @@
 class ControllerPrenotazione():
-    def __init__(self, prenotazione ):
+    def __init__(self, prenotazione):
         self.model = prenotazione
+
 
 
     def get_id_prenotazione(self):
@@ -13,6 +14,10 @@ class ControllerPrenotazione():
     def get_impianto_prenotazione(self):
         return self.model.impianto
 
+    def get_attrezzatura_prenotazione(self):
+        return self.model.attrezzatura
+
     def get_data_prenotazione(self):
         return self.model.data
+
 
