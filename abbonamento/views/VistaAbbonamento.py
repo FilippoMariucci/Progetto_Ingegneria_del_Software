@@ -1,3 +1,4 @@
+import time
 from datetime import datetime
 
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton, QMessageBox
@@ -38,10 +39,12 @@ class VistaAbbonamento(QWidget):
 
     # Funzione di inerimento dell'abbonamento
     def add_abbonamento_click(self):
+
         try:
             # Tramite la funzione .strptime mi trasforma la stringa in un oggetto di tipo datetime
             # e gli diciamo che il formato deve essere giorno,mese,anno
             date = datetime.strptime(self.text_scadenza.text(), '%d/%m/%Y')
+
             self.callback_inserisci_abbonamento(Abbonamento(date.timestamp()))
             self.close()
         except:

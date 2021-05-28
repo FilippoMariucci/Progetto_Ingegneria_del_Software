@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton
 from ListaClienti.views.VistaListaClienti import VistaListaClienti
 from ListaDipendenti.views.VistaListaDipendenti import VistaListaDipendenti
 from ListaImpianti.view.VistaListaImpianti import VistaListaImpianti
+from listaattrezzatura.views.VistaListaAttrezzature import VistaListaAttrezzature
 from listaprenotazioni.views.VistaListaPrenotazioni import VistaListaPrenotazioni
 
 
@@ -29,6 +30,7 @@ class VistaHome(QWidget):
         grid_layout.addWidget(self.get_generic_button("Lista Clienti", self.go_lista_clienti),0,1)
         grid_layout.addWidget(self.get_generic_button("Lista Dipendenti", self.go_lista_dipendenti),0,2)
         grid_layout.addWidget(self.get_generic_button("Lista Prenotazioni", self.go_lista_prenotazioni),0,3)
+        grid_layout.addWidget(self.get_generic_button("Lista Atrezzature",self.go_lista_attrezzature),0,4)
 
         self.setLayout(grid_layout)
         self.resize(800, 700)
@@ -57,3 +59,7 @@ class VistaHome(QWidget):
     def go_lista_prenotazioni(self):
         self.vista_lista_prenotazione = VistaListaPrenotazioni()
         self.vista_lista_prenotazione.show()
+
+    def go_lista_attrezzature(self):
+        self.vista_lista_attrezzature = VistaListaAttrezzature()
+        self.vista_lista_attrezzature.show()

@@ -1,0 +1,31 @@
+[
+  {
+    "id": "Attrezzatura_1",
+    "nome": "Pallone",
+    "prezzo": 15.0
+  },
+
+  {
+    "id": "Attrezzatura_2",
+    "nome": "Casaccha",
+    "prezzo": 5.0
+  },
+
+  {
+    "id": "Attrezzatura_3",
+    "nome": "Occhialini per piscina",
+    "prezzo": 10.0
+  },
+
+  {
+    "id": "Attrezzatura_4",
+    "nome": "Asciugamano",
+    "prezzo": 15.0
+  },
+
+  {
+    "id": "Attrezzatura_5",
+    "nome": "Cuffia per piscina",
+    "prezzo": 3.0
+  }
+]
