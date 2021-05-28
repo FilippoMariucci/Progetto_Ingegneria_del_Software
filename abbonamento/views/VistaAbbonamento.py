@@ -42,10 +42,17 @@ class VistaAbbonamento(QWidget):
             # Tramite la funzione .strptime mi trasforma la stringa in un oggetto di tipo datetime
             # e gli diciamo che il formato deve essere giorno,mese,anno
             date = datetime.strptime(self.text_scadenza.text(), '%d/%m/%Y')
-            self.callback_inserisci_abbonamento(Abbonamento(date.timestamp()))
-            self.close()
+            attuale = datetime.now()
+            if(date >= attuale):
+                self.callback_inserisci_abbonamento(Abbonamento(date.timestamp()))
+                self.close()
+            else:
+                QMessageBox.critical(self, 'Errore', 'La data inserita è passata',QMessageBox.Ok,QMessageBox.Ok)
         except:
             # Nel caso in cui l'utente abbia sbagliato a scrivere il formato della data gli apparirà a schermo
             # questo QMessageBox.critical con un solo pulsante che può premere(OK)
             QMessageBox.critical(self, 'Errore', 'Inserisci la data nel formato richiesto: dd/MM/yyyy', QMessageBox.Ok,
                                  QMessageBox.Ok)
+
+
+
