@@ -1,12 +1,14 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QSpacerItem, QSizePolicy, QPushButton
 
+from attrezzatura.controller.ControllerAttrezzatura import ControllerAttrezzatura
 from prenotazione.controller.ControllerPrenotazione import ControllerPrenotazione
 
 
 class VistaPrenotazione(QWidget):
-    def __init__(self, prenotazione, disdici_prenotazione, elimina_callback, parent=None):
+    def __init__(self, prenotazione, disdici_prenotazione, elimina_callback,  parent=None):
         super(VistaPrenotazione, self).__init__(parent)
         self.controller = ControllerPrenotazione(prenotazione)
+
         self.disdisci_prenotazione = disdici_prenotazione
         self.elimina_callback = elimina_callback
 
@@ -31,6 +33,10 @@ class VistaPrenotazione(QWidget):
         font_data.setPointSize(30)
         label_data.setFont(font_data)
         v_layout.addWidget(label_data)
+
+
+
+
 
         v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
