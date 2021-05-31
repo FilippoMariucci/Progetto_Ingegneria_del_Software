@@ -88,12 +88,13 @@ class VistaInserisciPrenotazione(QWidget):
         data = self.text_data.text()
         cliente = self.lista_clienti_abbonati[self.combo_clienti.currentIndex()]
         impianto = self.lista_impianti_disponibili[self.combo_impianti.currentIndex()]
+        attrezzatura = self.lista_attrezzatura_disponibile[self.combo_attrezzature.currentIndex()]
         if data == "" or not cliente or not impianto:
             QMessageBox(self, 'Errore', 'Per favore, inserisci tutte le informazioni richieste', QMessageBox.Ok,
                         QMessageBox.Ok)
         else:
             self.controller.aggiungi_prenotazione(
-                Prenotazione((cliente.cognome + cliente.nome).lower(), cliente, impianto, data))
+                Prenotazione((cliente.cognome + cliente.nome).lower(), cliente, impianto, data, attrezzatura))
             impianto.prenota()
             with open('ListaImpianti/data/Lista_Impianti_salvata.pickle', 'wb') as f:
                 pickle.dump(self.lista_impianti_salvata, f, pickle.HIGHEST_PROTOCOL)
