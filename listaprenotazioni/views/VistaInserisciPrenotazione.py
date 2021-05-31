@@ -70,8 +70,10 @@ class VistaInserisciPrenotazione(QWidget):
                 item.setFont(font)
                 self.comboattrezzature_model.appendRow(item)
             self.combo_attrezzature.setModel(self.comboattrezzature_model)
-            v_layout.addWidget(QLabel("Aggiungi attrezzatura"))
+            v_layout.addWidget(QLabel("Aggiungi attrezzatura 1"))
             v_layout.addWidget(self.combo_attrezzature)
+
+
 
         v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
