@@ -59,24 +59,6 @@ class VistaInserisciPrenotazione(QWidget):
         v_layout.addWidget(QLabel("Impianto"))
         v_layout.addWidget(self.combo_impianti)
 
-        self.combo_attrezzature = QComboBox()
-        self.comboattrezzature_model = QStandardItemModel(self.combo_attrezzature)
-        if os.path.isfile('listaattrezzatura/data/lista_attrezzatura_salvata.pickle'):
-            with open('listaattrezzatura/data/lista_attrezzatura_salvata.pickle', 'rb') as f:
-                self.lista_attrezzatura_salvata = pickle.load(f)
-            self.lista_attrezzatura_disponibile = [r for r in self.lista_attrezzatura_salvata if r.is_disponibile()]
-            for attrezzatura in self.lista_attrezzatura_disponibile:
-                item = QStandardItem()
-                item.setText(attrezzatura.nome)
-                item.setEditable(False)
-                font = item.font()
-                font.setPointSize(18)
-                item.setFont(font)
-                self.comboattrezzature_model.appendRow(item)
-            self.combo_attrezzature.setModel(self.comboattrezzature_model)
-            v_layout.addWidget(QLabel("Aggiungi attrezzatura 1"))
-            v_layout.addWidget(self.combo_attrezzature)
-
         self.combo_num = QComboBox()
         self.combo_num_model = QStandardItemModel(self.combo_num)
         for i in self.num:
@@ -94,8 +76,11 @@ class VistaInserisciPrenotazione(QWidget):
 
         v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
+        btn_attrezzatura = QPushButton("Inserisci attrezzatura/e")
+        btn_attrezzatura.clicked.connect(self.add_attrezzatura)
+        v_layout.addWidget(btn_attrezzatura)
         btn_ok = QPushButton("OK")
-        btn_ok.clicked.connect(self.add_attrezzatura)
+        btn_ok.clicked.connect(self.add_prenotazione)
         v_layout.addWidget(btn_ok)
 
         self.setLayout(v_layout)

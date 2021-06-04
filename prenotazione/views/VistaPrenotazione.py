@@ -34,8 +34,8 @@ class VistaPrenotazione(QWidget):
         label_data.setFont(font_data)
         v_layout.addWidget(label_data)
 
-        label_att = QLabel("Attrezzatura: {} {}".format(self.controller.get_attrezzatura_prenotazione().nome,
-                                                        self.controller.get_attrezzatura_prenotazione().prezzo))
+        label_att = QLabel("Attrezzatura: {} € {}".format(self.controller.get_attrezzatura_prenotazione().nome,
+                                                        self.controller.get_attrezzatura_prenotazione().prezzo) )
         font_att = label_att.font()
         font_att.setPointSize(30)
         label_att.setFont(font_att)

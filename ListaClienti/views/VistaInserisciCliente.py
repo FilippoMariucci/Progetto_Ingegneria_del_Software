@@ -1,6 +1,9 @@
+from datetime import datetime
+
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QSpacerItem, QSizePolicy, QPushButton, QMessageBox
 
 from Cliente.model.Cliente import Cliente
+from abbonamento.model.Abbonamento import Abbonamento
 
 
 class VistaInserisciCliente(QWidget):
@@ -39,9 +42,35 @@ class VistaInserisciCliente(QWidget):
         codice_fiscale = self.info["Codice Fiscale"].text()
         telefono = self.info["Telefono"].text()
         data_di_nascita = self.info["Data di nascita"].text()
+
         if nome == "" or cognome == "" or codice_fiscale == "" or telefono == "" or data_di_nascita == "":
-            QMessageBox.critical(self, 'Errore', 'Per favore, inserisci tutte le informazioni richieste', QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.critical(self, 'Errore', 'Per favore, inserisci tutte le informazioni richieste',
+                                 QMessageBox.Ok, QMessageBox.Ok)
         else:
-            self.controller.aggiungi_cliente(Cliente((nome+cognome).lower(), nome, cognome, codice_fiscale, telefono, data_di_nascita))
-            self.callback()
-            self.close()
+            if len(codice_fiscale) != 16 :
+                QMessageBox.critical(self, 'Errore', 'Per favore, inserisci il codice fiscale correttamente correttamente',
+                                     QMessageBox.Ok, QMessageBox.Ok)
+            else:
+
+                if len(telefono) != 10:
+                    QMessageBox.critical(self, 'Errore', 'Per favore, inserisci il numero di telefono correttamente',
+                                     QMessageBox.Ok, QMessageBox.Ok)
+                else:
+
+                    try:
+                        date = datetime.strptime(data_di_nascita, '%d/%m/%Y')
+                        attuale = datetime.now()
+                        if date <= attuale:
+                            self.controller.aggiungi_cliente(Cliente((nome + cognome).lower(), nome, cognome,
+                                                                 codice_fiscale, telefono, data_di_nascita))
+                            self.callback()
+                            self.close()
+                        else:
+                            QMessageBox.critical(self, 'Errore', 'La data inserita è futura', QMessageBox.Ok,
+                                             QMessageBox.Ok)
+                    except:
+                        QMessageBox.critical(self, 'Errore', 'Inserisci la data nel formato richiesto: dd/MM/yyyy',
+                                         QMessageBox.Ok,
+                                         QMessageBox.Ok)
+
+
