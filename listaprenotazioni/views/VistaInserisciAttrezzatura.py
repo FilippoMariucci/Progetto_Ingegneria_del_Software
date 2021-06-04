@@ -2,49 +2,67 @@ import os
 import pickle
 
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QComboBox, QLabel, QSpacerItem, QSizePolicy, QPushButton
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QComboBox, QSpacerItem, QSizePolicy, QPushButton, \
+    QMessageBox
+
+from prenotazione.model.Prenotazione import Prenotazione
 
 
 class VistaInserisciAttrezzatura(QWidget):
+
+
     def __init__(self, controller, callback):
         super(VistaInserisciAttrezzatura, self).__init__(parent=None)
         self.controller = controller
         self.callback = callback
 
-        num_att = self.num[self.combo_num.currentIndex()]
+        v_layout = QVBoxLayout()
 
-        if num_att != 0:
+        self.combo_prenotazioni = QComboBox()
+        self.comboprenotazioni_model = QStandardItemModel(self.combo_prenotazioni)
+        if os.path.isfile('listaprenotazioni/data/lista_prenotazioni_salvata.pickle'):
+            with open('listaprenotazioni/data/lista_prenotazioni_salvata.pickle', 'rb') as f:
+                self.lista_prenotazioni_salvata = pickle.load(f)
+            self.lista_prenotazioni_disponibili = [s for s in self.lista_prenotazioni_salvata]
+            for prenotazione in self.lista_prenotazioni_salvata:
+                item = QStandardItem()
+                item.setText(prenotazione.nome)
+                item.setEditable(False)
+                font = item.font()
+                font.setPointSize(18)
+                item.setFont(font)
+                self.comboprenotazioni_model.appendRow(item)
+            self.combo_prenotazioni.setModel(self.comboprenotazioni_model)
+        v_layout.addWidget(QLabel("Prenotazione"))
+        v_layout.addWidget(self.combo_prenotazioni)
 
-            a_layout = QVBoxLayout()
-            i = 0
-            while i < num_att:
 
-                self.combo_attrezzature = QComboBox()
-                self.comboattrezzature_model = QStandardItemModel(self.combo_attrezzature)
-                if os.path.isfile('listaattrezzatura/data/lista_attrezzatura_salvata.pickle'):
-                    with open('listaattrezzatura/data/lista_attrezzatura_salvata.pickle', 'rb') as f:
-                        self.lista_attrezzatura_salvata = pickle.load(f)
-                    self.lista_attrezzatura_disponibile = [r for r in self.lista_attrezzatura_salvata if
-                                                           r.is_disponibile()]
-                    for attrezzatura in self.lista_attrezzatura_disponibile:
-                        item = QStandardItem()
-                        item.setText(attrezzatura.nome)
-                        item.setEditable(False)
-                        font = item.font()
-                        font.setPointSize(18)
-                        item.setFont(font)
-                        self.comboattrezzature_model.appendRow(item)
-                    self.combo_attrezzature.setModel(self.comboattrezzature_model)
-                    a_layout.addWidget(QLabel("Aggiungi attrezzatura"))
-                    a_layout.addWidget(self.combo_attrezzature)
-                i += 1
 
-            a_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
-            btn_ok = QPushButton("OK")
-            btn_ok.clicked.connect(self.add_prenotazione)
-            a_layout.addWidget(btn_ok)
-            self.setLayout(a_layout)
-            self.setWindowTitle('Nuova Prenotazione')
+        v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
+
+        btn_ok = QPushButton("OK")
+        btn_ok.clicked.connect(self.add_prenotazione)
+        v_layout.addWidget(btn_ok)
+
+        self.setLayout(v_layout)
+        self.setWindowTitle('Nuova Prenotazione')
+
+    def add_prenotazione(self):
+        data = self.text_data.text()
+        cliente = self.lista_clienti_abbonati[self.combo_clienti.currentIndex()]
+        impianto = self.lista_impianti_disponibili[self.combo_impianti.currentIndex()]
+
+        if data == "" or not cliente or not impianto:
+            QMessageBox(self, 'Errore', 'Per favore, inserisci tutte le informazioni richieste', QMessageBox.Ok,
+                        QMessageBox.Ok)
         else:
-            self.add_prenotazione()
+            self.controller.aggiungi_prenotazione(
+                Prenotazione((cliente.cognome + cliente.nome).lower(), cliente, impianto, data
+                             ))
+            impianto.prenota()
+            with open('ListaImpianti/data/Lista_Impianti_salvata.pickle', 'wb') as f:
+                pickle.dump(self.lista_impianti_salvata, f, pickle.HIGHEST_PROTOCOL)
+            self.callback()
+            self.close()
+

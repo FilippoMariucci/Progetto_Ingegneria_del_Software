@@ -34,18 +34,18 @@ class VistaPrenotazione(QWidget):
         label_data.setFont(font_data)
         v_layout.addWidget(label_data)
 
-        label_att = QLabel("Attrezzatura: {} € {}".format(self.controller.get_attrezzatura_prenotazione().nome,
-                                                        self.controller.get_attrezzatura_prenotazione().prezzo) )
-        font_att = label_att.font()
-        font_att.setPointSize(30)
-        label_att.setFont(font_att)
-        v_layout.addWidget(label_att)
+        #label_att = QLabel("Attrezzatura: {} € {}".format(self.controller.get_attrezzatura_prenotazione().nome,
+         #                                               self.controller.get_attrezzatura_prenotazione().prezzo) )
+        #font_att = label_att.font()
+        #font_att.setPointSize(30)
+        #label_att.setFont(font_att)
+        #v_layout.addWidget(label_att)
 
-        label_num_att = QLabel("Numero attrezzatura: {}".format(self.controller.get_num_att()))
-        font_num_att = label_num_att.font()
-        font_num_att.setPointSize(30)
-        label_num_att.setFont(font_num_att)
-        v_layout.addWidget(label_num_att)
+        #label_num_att = QLabel("Numero attrezzatura: {}".format(self.controller.get_num_att()))
+        #font_num_att = label_num_att.font()
+        #font_num_att.setPointSize(30)
+        #label_num_att.setFont(font_num_att)
+        #v_layout.addWidget(label_num_att)
 
         v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
