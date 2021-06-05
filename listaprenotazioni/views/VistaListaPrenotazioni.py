@@ -1,10 +1,9 @@
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QListView, QVBoxLayout, QPushButton
 
-from attrezzatura.views.VistaAttrezzatura import VistaAttrezzatura
-from listaattrezzatura.controller.ControllerListaAttrezzatura import ControllerListaAttrezzatura
+
 from listaprenotazioni.controller.ControllerListaPrenotazioni import ControllerListaPrenotazioni
-from listaprenotazioni.views.VistaInserisciAttrezzatura import VistaInserisciAttrezzatura
+from listaprenotazioni.views.VistaScegliPrenotazione import VistaInserisciAttrezzatura
 from listaprenotazioni.views.VistaInserisciPrenotazione import VistaInserisciPrenotazione
 from prenotazione.views.VistaPrenotazione import VistaPrenotazione
 
@@ -34,7 +33,6 @@ class VistaListaPrenotazioni(QWidget):
         buttons_layout.addStretch()
         h_layout.addLayout(buttons_layout)
 
-
         self.setLayout(h_layout)
         self.resize(600, 300)
         self.setWindowTitle('Lista Prenotazioni')
@@ -52,7 +50,7 @@ class VistaListaPrenotazioni(QWidget):
         self.list_view.setModel(self.listview_model)
 
     def show_selected_info(self):
-        if (len(self.list_view.selectedIndexes()) > 0):
+        if len(self.list_view.selectedIndexes()) > 0:
             selected = self.list_view.selectedIndexes()[0].row()
             prenotazione_selezionata = self.controller.get_prenotazione_by_index(selected)
             self.vista_prenotazione = VistaPrenotazione(prenotazione_selezionata, self.controller.elimina_prenotazione_by_id, self.update_ui)
