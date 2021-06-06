@@ -153,16 +153,17 @@ class VistaInserisciPrenotazione(QWidget):
                 self.lista_attrezzatura_salvata = pickle.load(f)
             self.lista_attrezzatura_disponibile = [s for s in self.lista_attrezzatura_salvata if s.is_disponibile()]
             for attrezzatura in self.lista_attrezzatura_disponibile:
-                totale = float(attrezzatura.prezzo) * (a[i])
-                att[attrezzatura.nome] = totale
+                att[attrezzatura.nome] = a[i]
                 i += 1
+
+        totale = float(impianto.prezzo)
 
         if data == "" or not cliente or not impianto:
             QMessageBox(self, 'Errore', 'Per favore, inserisci tutte le informazioni richieste', QMessageBox.Ok,
                         QMessageBox.Ok)
         else:
             self.controller.aggiungi_prenotazione(
-                Prenotazione((cliente.cognome + cliente.nome).lower(), cliente, impianto, data, att))
+                Prenotazione((cliente.cognome + cliente.nome).lower(), cliente, impianto, data, att, totale))
             impianto.prenota()
             with open('ListaImpianti/data/Lista_Impianti_salvata.pickle', 'wb') as f:
                 pickle.dump(self.lista_impianti_salvata, f, pickle.HIGHEST_PROTOCOL)

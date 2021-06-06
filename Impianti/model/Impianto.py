@@ -1,3 +1,7 @@
+import os
+import pickle
+
+
 class Impianto():
 
    # Costruttore con le informazioni di un Impianti
@@ -16,3 +20,6 @@ class Impianto():
     # Funzione che rende l'impiato prenotato non più disponibile
     def prenota(self):
         self.disponibilità = False
+
+    def disdetto(self):
+        self.disponibilità = True

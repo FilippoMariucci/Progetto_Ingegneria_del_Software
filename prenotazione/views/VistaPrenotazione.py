@@ -13,7 +13,8 @@ class VistaPrenotazione(QWidget):
 
         v_layout = QVBoxLayout()
 
-        label_nome = QLabel(self.controller.get_impianto_prenotazione().nome)
+        label_nome = QLabel(self.controller.get_impianto_prenotazione().nome + " " +
+                            self.controller.get_impianto_prenotazione().posizione)
         font_nome = label_nome.font()
         font_nome.setPointSize(30)
         label_nome.setFont(font_nome)
@@ -39,6 +40,12 @@ class VistaPrenotazione(QWidget):
         font_att.setPointSize(30)
         label_att.setFont(font_att)
         v_layout.addWidget(label_att)
+
+        label_tot = QLabel("Totale €{}".format(self.controller.get_totale_prenotazione()))
+        font_tot = label_tot.font()
+        font_tot.setPointSize(30)
+        label_tot.setFont(font_tot)
+        v_layout.addWidget(label_tot)
 
         v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 

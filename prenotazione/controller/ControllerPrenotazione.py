@@ -21,8 +21,5 @@ class ControllerPrenotazione():
     def get_data_prenotazione(self):
         return self.model.data
 
-    def get_attrezzatura(self):
-        return self.model.attrezzatura
-
-    def get_num_att(self):
-        return self.model.num_att
+    def get_totale_prenotazione(self):
+        return self.model.totale
