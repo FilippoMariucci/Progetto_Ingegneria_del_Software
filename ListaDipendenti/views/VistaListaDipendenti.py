@@ -18,10 +18,10 @@ class VistaListaDipendenti(QWidget):
         h_layout.addWidget(self.list_view)
 
         buttons_layout = QVBoxLayout()
-        open_button = QPushButton('Apri')
+        open_button = QPushButton('Visualizza informazioni')
         open_button.clicked.connect(self.show_selected_info)
         buttons_layout.addWidget(open_button)
-        new_button = QPushButton("Nuovo")
+        new_button = QPushButton("Inserisci dipendente")
         new_button.clicked.connect(self.show_new_dipendente)
         buttons_layout.addWidget(new_button)
         buttons_layout.addStretch()

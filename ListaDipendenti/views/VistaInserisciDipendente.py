@@ -1,24 +1,26 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QSpacerItem, QSizePolicy, QPushButton, QMessageBox
 
 from Dipendente.model.Dipendente import Dipendente
-
+from datetime import datetime
 
 class VistaInserisciDipendente(QWidget):
     def __init__(self, controller, callback):
         super(VistaInserisciDipendente, self).__init__()
         self.controller = controller
         self.callback = callback
+        self.info = {}
 
         self.v_layout = QVBoxLayout()
-        self.qlines = {}
-        self.add_info_text("nome", "Nome")
-        self.add_info_text("cognome", "Cognome")
-        self.add_info_text("codice_fiscale", "Codice Fiscale")
-        self.add_info_text("data_di_nascita", "Data di nascita (dd/MM/yyyy)")
-        self.add_info_text("luogo_di_nascita", "Luogo di nascita")
-        self.add_info_text("email", "Email")
-        self.add_info_text("telefono", "Telefono")
-        self.add_info_text("licenza", "Licenza")
+
+        self.get_form_entry("Nome")
+        self.get_form_entry("Cognome")
+        self.get_form_entry("Data di nascita (dd/MM/yyyy)")
+        self.get_form_entry("Luogo di nascita")
+        self.get_form_entry("Codice Fiscale")
+        self.get_form_entry("Telefono")
+        self.get_form_entry("Email")
+        self.get_form_entry("Licenza")
+
 
         self.v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
@@ -29,29 +31,51 @@ class VistaInserisciDipendente(QWidget):
         self.setLayout(self.v_layout)
         self.setWindowTitle("Nuovo Dipendente")
 
-    # Funzione che permette di visualizzare a schermo le informazioni del dipendente
-    def add_info_text(self, nome, label):
-        self.v_layout.addWidget(QLabel(label))
-        current_text = QLineEdit(self)
-        self.qlines[nome] = current_text
-        self.v_layout.addWidget(current_text)
+    def get_form_entry(self, tipo):
+        self.v_layout.addWidget(QLabel(tipo))
+        current_text_edit = QLineEdit(self)
+        self.v_layout.addWidget(current_text_edit)
+        self.info[tipo] = current_text_edit
 
     def add_dipendente(self):
-        for value in self.qlines.values():
-            if value.text() == "":
-                QMessageBox.critical(self, 'Errore', 'Per favore, inserisci tutte le informazioni richieste.',
+        nome = self.info["Nome"].text()
+        cognome = self.info["Cognome"].text()
+        data_di_nascita = self.info["Data di nascita"].text()
+        luogo_di_nascita = self.info["Luogo di nascita"].text()
+        codice_fiscale = self.info["Codice Fiscale"].text()
+        telefono = self.info["Telefono"].text()
+        email = self.info["Email"].text()
+        licenza = self.info["Licenza"].text()
+
+
+        if nome == "" or cognome == ""  or data_di_nascita == "" or luogo_di_nascita == "" or codice_fiscale == "" \
+                or telefono == "" or email == "" or licenza == "":
+            QMessageBox.critical(self, 'Errore', 'Per favore, inserisci tutte le informazioni richieste',
+                                 QMessageBox.Ok, QMessageBox.Ok)
+        else:
+            if len(codice_fiscale) != 16 :
+                QMessageBox.critical(self, 'Errore', 'Per favore, inserisci il codice fiscale correttamente correttamente',
                                      QMessageBox.Ok, QMessageBox.Ok)
-                return
-        self.controller.aggiungi_dipendente(Dipendente(
-            (self.qlines["nome"].text() + self.qlines["cognome"].text()).lower(),
-            self.qlines["nome"].text(),
-            self.qlines["cognome"].text(),
-            self.qlines["data_di_nascita"].text(),
-            self.qlines["luogo_di_nascita"].text(),
-            self.qlines["codice_fiscale"].text(),
-            self.qlines["telefono"].text(),
-            self.qlines["email"].text(),
-            self.qlines["licenza"].text())
-        )
-        self.callback()
-        self.close()
+            else:
+
+                if len(telefono) != 10:
+                    QMessageBox.critical(self, 'Errore', 'Per favore, inserisci il numero di telefono correttamente',
+                                     QMessageBox.Ok, QMessageBox.Ok)
+                else:
+
+                    try:
+                        date = datetime.strptime(data_di_nascita, '%d/%m/%Y')
+                        attuale = datetime.now()
+                        if date <= attuale:
+                            self.controller.aggiungi_dipendente(Dipendente((nome + cognome).lower(), nome, cognome, data_di_nascita,
+                                                                           luogo_di_nascita, codice_fiscale, telefono, email, licenza
+                                                                           ))
+                            self.callback()
+                            self.close()
+                        else:
+                            QMessageBox.critical(self, 'Errore', 'La data inserita è futura', QMessageBox.Ok,
+                                             QMessageBox.Ok)
+                    except:
+                        QMessageBox.critical(self, 'Errore', 'Inserisci la data nel formato richiesto: dd/MM/yyyy',
+                                         QMessageBox.Ok,
+                                         QMessageBox.Ok)
