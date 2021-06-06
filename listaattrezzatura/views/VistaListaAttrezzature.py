@@ -28,7 +28,7 @@ class VistaListaAttrezzature(QWidget):
 
 
         buttons_layout = QVBoxLayout()
-        open_buttons = QPushButton("Visualizza informazioni")
+        open_buttons = QPushButton("Visualizza informazione")
         open_buttons.clicked.connect(self.show_selected_info)
         buttons_layout.addWidget(open_buttons)
         buttons_layout.addStretch()
