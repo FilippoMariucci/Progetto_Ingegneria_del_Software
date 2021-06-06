@@ -57,7 +57,7 @@ class VistaInserisciPrenotazione(QWidget):
         v_layout.addWidget(self.combo_impianti)
 
         n = [0]
-        for i in range(1, 10):
+        for i in range(1, 11):
             n.append(i)
 
         v_layout.addWidget(QLabel("Pallone"))
@@ -130,10 +130,6 @@ class VistaInserisciPrenotazione(QWidget):
         self.combo_quantita_5.setModel(self.comboquantita_5_model)
         v_layout.addWidget(self.combo_quantita_5)
 
-        self.a = [self.combo_quantita_1.currentIndex(), self.combo_quantita_2.currentIndex(),
-             self.combo_quantita_3.currentIndex(), self.combo_quantita_4.currentIndex(),
-             self.combo_quantita_5.currentIndex()]
-
         v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
         btn_ok = QPushButton("OK")
@@ -147,7 +143,9 @@ class VistaInserisciPrenotazione(QWidget):
         data = self.text_data.text()
         cliente = self.lista_clienti_abbonati[self.combo_clienti.currentIndex()]
         impianto = self.lista_impianti_disponibili[self.combo_impianti.currentIndex()]
-        num = self.a
+        a = [self.combo_quantita_1.currentIndex(), self.combo_quantita_2.currentIndex(),
+             self.combo_quantita_3.currentIndex(), self.combo_quantita_4.currentIndex(),
+             self.combo_quantita_5.currentIndex()]
         att = {}
         i = 0
         if os.path.isfile('listaattrezzatura/data/lista_attrezzatura_salvata.pickle'):
@@ -155,9 +153,8 @@ class VistaInserisciPrenotazione(QWidget):
                 self.lista_attrezzatura_salvata = pickle.load(f)
             self.lista_attrezzatura_disponibile = [s for s in self.lista_attrezzatura_salvata if s.is_disponibile()]
             for attrezzatura in self.lista_attrezzatura_disponibile:
-                attrezzatura.prezzo = float(attrezzatura.prezzo)
-                attrezzatura.prezzo *= float(num[i])
-                att[attrezzatura.nome] = attrezzatura.prezzo
+                totale = float(attrezzatura.prezzo) * (a[i])
+                att[attrezzatura.nome] = totale
                 i += 1
 
         if data == "" or not cliente or not impianto:
