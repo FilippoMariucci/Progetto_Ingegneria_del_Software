@@ -51,5 +51,3 @@ class VistaListaImpianti(QWidget):
             impianto_selezionato = self.Controller.get_impianto_by_index(selected)
             self.vista_impinti= VistaImpianti(impianto_selezionato)
             self.vista_impinti.show()
-
-

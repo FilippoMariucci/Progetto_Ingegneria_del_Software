@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QSpacerItem
 from Dipendente.model.Dipendente import Dipendente
 from datetime import datetime
 
+
 class VistaInserisciDipendente(QWidget):
     def __init__(self, controller, callback):
         super(VistaInserisciDipendente, self).__init__()
@@ -21,7 +22,6 @@ class VistaInserisciDipendente(QWidget):
         self.get_form_entry("Email")
         self.get_form_entry("Licenza")
 
-
         self.v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
         btn_ok = QPushButton("OK")
@@ -38,44 +38,46 @@ class VistaInserisciDipendente(QWidget):
         self.info[tipo] = current_text_edit
 
     def add_dipendente(self):
+
         nome = self.info["Nome"].text()
         cognome = self.info["Cognome"].text()
-        data_di_nascita = self.info["Data di nascita"].text()
+        data_di_nascita = self.info["Data di nascita (dd/MM/yyyy)"].text()
         luogo_di_nascita = self.info["Luogo di nascita"].text()
         codice_fiscale = self.info["Codice Fiscale"].text()
         telefono = self.info["Telefono"].text()
         email = self.info["Email"].text()
         licenza = self.info["Licenza"].text()
 
-
-        if nome == "" or cognome == ""  or data_di_nascita == "" or luogo_di_nascita == "" or codice_fiscale == "" \
+        if nome == "" or cognome == "" or data_di_nascita == "" or luogo_di_nascita == "" or codice_fiscale == "" \
                 or telefono == "" or email == "" or licenza == "":
             QMessageBox.critical(self, 'Errore', 'Per favore, inserisci tutte le informazioni richieste',
                                  QMessageBox.Ok, QMessageBox.Ok)
         else:
-            if len(codice_fiscale) != 16 :
-                QMessageBox.critical(self, 'Errore', 'Per favore, inserisci il codice fiscale correttamente correttamente',
+            if len(codice_fiscale) != 16:
+                QMessageBox.critical(self, 'Errore',
+                                     'Per favore, inserisci il codice fiscale correttamente',
                                      QMessageBox.Ok, QMessageBox.Ok)
             else:
 
                 if len(telefono) != 10:
                     QMessageBox.critical(self, 'Errore', 'Per favore, inserisci il numero di telefono correttamente',
-                                     QMessageBox.Ok, QMessageBox.Ok)
+                                         QMessageBox.Ok, QMessageBox.Ok)
                 else:
 
                     try:
                         date = datetime.strptime(data_di_nascita, '%d/%m/%Y')
                         attuale = datetime.now()
                         if date <= attuale:
-                            self.controller.aggiungi_dipendente(Dipendente((nome + cognome).lower(), nome, cognome, data_di_nascita,
-                                                                           luogo_di_nascita, codice_fiscale, telefono, email, licenza
-                                                                           ))
+                            self.controller.aggiungi_dipendente(
+                                Dipendente((nome + cognome).lower(), nome, cognome, data_di_nascita,
+                                           luogo_di_nascita, codice_fiscale, telefono, email, licenza
+                                           ))
                             self.callback()
                             self.close()
                         else:
                             QMessageBox.critical(self, 'Errore', 'La data inserita è futura', QMessageBox.Ok,
-                                             QMessageBox.Ok)
+                                                 QMessageBox.Ok)
                     except:
                         QMessageBox.critical(self, 'Errore', 'Inserisci la data nel formato richiesto: dd/MM/yyyy',
-                                         QMessageBox.Ok,
-                                         QMessageBox.Ok)
+                                             QMessageBox.Ok,
+                                             QMessageBox.Ok)
