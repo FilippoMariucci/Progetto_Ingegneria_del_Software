@@ -18,7 +18,7 @@ class VistaHome(QWidget):
         buttons_layout = QHBoxLayout()
 
 
-        oImage = QImage("test.png")
+        oImage = QImage("Sfondo Home.png")
         sImage = oImage.scaled(800, 700)  # resize Image to widgets size
 
         palette = QPalette()
