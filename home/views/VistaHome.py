@@ -1,6 +1,7 @@
+from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtCore import QSize
 from PyQt5.QtGui import QImage, QBrush, QPalette
-from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton
+from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton, QHBoxLayout, QVBoxLayout
 
 from ListaClienti.views.VistaListaClienti import VistaListaClienti
 from ListaDipendenti.views.VistaListaDipendenti import VistaListaDipendenti
@@ -12,8 +13,10 @@ from listaprenotazioni.views.VistaListaPrenotazioni import VistaListaPrenotazion
 class VistaHome(QWidget):
     def __init__(self, parent=None):
         super(VistaHome, self).__init__(parent)
-        grid_layout = QGridLayout()
-        # buttons_layout = QVBoxLayout()
+
+        grid_layout = QVBoxLayout()
+        buttons_layout = QHBoxLayout()
+
 
         oImage = QImage("test.png")
         sImage = oImage.scaled(800, 700)  # resize Image to widgets size
@@ -24,20 +27,23 @@ class VistaHome(QWidget):
 
         self.show()
 
-        grid_layout.addWidget(self.get_generic_button("Lista Impianti", self.go_lista_impianti), 0, 0)
-        grid_layout.addWidget(self.get_generic_button("Lista Clienti", self.go_lista_clienti), 0, 1)
-        grid_layout.addWidget(self.get_generic_button("Lista Dipendenti", self.go_lista_dipendenti), 0, 2)
-        grid_layout.addWidget(self.get_generic_button("Lista Prenotazioni", self.go_lista_prenotazioni), 0, 3)
-        grid_layout.addWidget(self.get_generic_button("Lista Atrezzature", self.go_lista_attrezzature), 0, 4)
+        grid_layout.addWidget(self.get_generic_button("Lista Impianti", self.go_lista_impianti))
+        grid_layout.addWidget(self.get_generic_button("Lista Clienti", self.go_lista_clienti))
+        grid_layout.addWidget(self.get_generic_button("Lista Dipendenti", self.go_lista_dipendenti))
+        grid_layout.addWidget(self.get_generic_button("Lista Prenotazioni", self.go_lista_prenotazioni))
+        grid_layout.addWidget(self.get_generic_button("Lista Atrezzature", self.go_lista_attrezzature))
 
-        self.setLayout(grid_layout)
+        buttons_layout.addStretch()
+        #grid_layout.addStretch()
+        buttons_layout.addLayout(grid_layout)
+        self.setLayout(buttons_layout)
         self.resize(800, 700)
         self.setWindowTitle('Gestore Impianti')
 
     def get_generic_button(self, titolo, on_click):
         button = QPushButton(titolo, self)
-        button.setGeometry(400, 400, 300, 260)
-        button.move(700, 150)
+
+        button.resize(896454,1)
         button.clicked.connect(on_click)
         return button
 

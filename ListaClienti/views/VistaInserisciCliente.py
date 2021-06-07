@@ -19,7 +19,7 @@ class VistaInserisciCliente(QWidget):
         self.get_form_entry("Cognome")
         self.get_form_entry("Codice Fiscale")
         self.get_form_entry("Telefono")
-        self.get_form_entry("Data di nascita")
+        self.get_form_entry("Data di nascita (dd/MM/yyyy)")
 
         self.v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
@@ -41,7 +41,7 @@ class VistaInserisciCliente(QWidget):
         cognome = self.info["Cognome"].text()
         codice_fiscale = self.info["Codice Fiscale"].text()
         telefono = self.info["Telefono"].text()
-        data_di_nascita = self.info["Data di nascita"].text()
+        data_di_nascita = self.info["Data di nascita (dd/MM/yyyy)"].text()
 
         if nome == "" or cognome == "" or codice_fiscale == "" or telefono == "" or data_di_nascita == "":
             QMessageBox.critical(self, 'Errore', 'Per favore, inserisci tutte le informazioni richieste',
