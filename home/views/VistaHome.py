@@ -1,7 +1,5 @@
-from PyQt5 import QtWidgets, QtCore
-from PyQt5.QtCore import QSize
 from PyQt5.QtGui import QImage, QBrush, QPalette
-from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton, QHBoxLayout, QVBoxLayout
+from PyQt5.QtWidgets import QWidget, QPushButton, QHBoxLayout, QVBoxLayout
 
 from ListaClienti.views.VistaListaClienti import VistaListaClienti
 from ListaDipendenti.views.VistaListaDipendenti import VistaListaDipendenti
@@ -14,8 +12,8 @@ class VistaHome(QWidget):
     def __init__(self, parent=None):
         super(VistaHome, self).__init__(parent)
 
-        grid_layout = QVBoxLayout()
-        buttons_layout = QHBoxLayout()
+        grid_layout = QHBoxLayout()
+        buttons_layout = QVBoxLayout()
 
 
         oImage = QImage("Sfondo Home.png")
@@ -34,6 +32,7 @@ class VistaHome(QWidget):
         grid_layout.addWidget(self.get_generic_button("Lista Atrezzature", self.go_lista_attrezzature))
 
         buttons_layout.addStretch()
+
         #grid_layout.addStretch()
         buttons_layout.addLayout(grid_layout)
         self.setLayout(buttons_layout)
@@ -43,7 +42,7 @@ class VistaHome(QWidget):
     def get_generic_button(self, titolo, on_click):
         button = QPushButton(titolo, self)
 
-        button.resize(896454,1)
+        button.resize(50, 100)
         button.clicked.connect(on_click)
         return button
 
