@@ -1,5 +1,6 @@
 import os
 import pickle
+from datetime import datetime
 
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QComboBox, QSpacerItem, QSizePolicy, QPushButton, \
@@ -22,13 +23,43 @@ class VistaInserisciPrenotazione(QWidget):
         self.text_data = QLineEdit(self)
         v_layout.addWidget(self.text_data)
 
+        v_layout.addWidget(QLabel("Ora (HH.mm)"))
+        self.combo_ora = QComboBox()
+        self.comboora_model = QStandardItemModel(self.combo_ora)
+        for i in range(9, 20):
+            if i == 13 or i == 14:
+                i += 1
+            else:
+                item = QStandardItem()
+                item.setText(str(i) + ".00")
+                item.setEditable(False)
+                font = item.font()
+                font.setPointSize(18)
+                item.setFont(font)
+                self.comboora_model.appendRow(item)
+        self.combo_ora.setModel(self.comboora_model)
+        v_layout.addWidget(self.combo_ora)
+
+        v_layout.addWidget(QLabel("Numero ore prenotazione"))
+        self.combo_quant_ora = QComboBox()
+        self.combo_quant_ora_model = QStandardItemModel(self.combo_quant_ora)
+        for i in range(1, 10):
+            item = QStandardItem()
+            item.setText(str(i))
+            item.setEditable(False)
+            font = item.font()
+            font.setPointSize(18)
+            item.setFont(font)
+            self.combo_quant_ora_model.appendRow(item)
+        self.combo_quant_ora.setModel(self.combo_quant_ora_model)
+        v_layout.addWidget(self.combo_quant_ora)
+
         self.combo_clienti = QComboBox()
         self.comboclienti_model = QStandardItemModel(self.combo_clienti)
         if os.path.isfile('ListaClienti/data/lista_clienti_salvata.pickle'):
             with open('ListaClienti/data/lista_clienti_salvata.pickle', 'rb') as f:
                 self.lista_clienti_salvata = pickle.load(f)
-            self.lista_clienti_abbonati = [c for c in self.lista_clienti_salvata]
-            for cliente in self.lista_clienti_abbonati:
+            for cliente in self.lista_clienti_salvata:
                 item = QStandardItem()
                 item.setText(cliente.nome + " " + cliente.cognome)
                 item.setEditable(False)
@@ -143,11 +174,13 @@ class VistaInserisciPrenotazione(QWidget):
 
     def add_prenotazione(self):
         data = self.text_data.text()
-        cliente = self.lista_clienti_abbonati[self.combo_clienti.currentIndex()]
+        cliente = self.lista_clienti_salvata[self.combo_clienti.currentIndex()]
         impianto = self.lista_impianti_disponibili[self.combo_impianti.currentIndex()]
         a = [self.combo_quantita_1.currentIndex(), self.combo_quantita_2.currentIndex(),
              self.combo_quantita_3.currentIndex(), self.combo_quantita_4.currentIndex(),
              self.combo_quantita_5.currentIndex()]
+        orario = self.combo_ora.currentIndex() + 1
+        num_ore = self.combo_quant_ora.currentIndex() + 1
         att = {}
         i = 0
         if os.path.isfile('listaattrezzatura/data/lista_attrezzatura_salvata.pickle'):
@@ -160,8 +193,16 @@ class VistaInserisciPrenotazione(QWidget):
                     i += 1
                 else:
                     i += 1
+        k = 9
+        j = 0
+        while j < orario:
+            if k == 13:
+                k += 1
+            else:
+                k += 1
+                j += 1
 
-        totale = float(impianto.prezzo)
+        totale = float(impianto.prezzo) * num_ore
 
         if data == "" or not cliente or not impianto:
             QMessageBox(self, 'Errore', 'Per favore, inserisci tutte le informazioni richieste', QMessageBox.Ok,
@@ -172,7 +213,8 @@ class VistaInserisciPrenotazione(QWidget):
                 attuale = datetime.now()
                 if date >= attuale:
                     self.controller.aggiungi_prenotazione(
-                        Prenotazione((cliente.cognome + cliente.nome).lower(), cliente, impianto, data, att, totale))
+                        Prenotazione((cliente.cognome + cliente.nome).lower(), cliente, impianto, data, att, k, num_ore,
+                                     totale))
                     impianto.prenota()
                     with open('ListaImpianti/data/Lista_Impianti_salvata.pickle', 'wb') as f:
                         pickle.dump(self.lista_impianti_salvata, f, pickle.HIGHEST_PROTOCOL)

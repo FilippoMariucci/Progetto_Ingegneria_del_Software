@@ -15,7 +15,7 @@ class VistaInserisciDipendente(QWidget):
 
         self.get_form_entry("Nome")
         self.get_form_entry("Cognome")
-        self.get_form_entry("Data di nascita (dd/MM/yyyy)")
+        self.get_form_entry("Data di nascita")
         self.get_form_entry("Luogo di nascita")
         self.get_form_entry("Codice Fiscale")
         self.get_form_entry("Telefono")
@@ -63,7 +63,6 @@ class VistaInserisciDipendente(QWidget):
                     QMessageBox.critical(self, 'Errore', 'Per favore, inserisci il numero di telefono correttamente',
                                          QMessageBox.Ok, QMessageBox.Ok)
                 else:
-
                     try:
                         date = datetime.strptime(data_di_nascita, '%d/%m/%Y')
                         attuale = datetime.now()

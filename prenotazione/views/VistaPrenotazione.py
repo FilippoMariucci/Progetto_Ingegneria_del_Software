@@ -35,6 +35,13 @@ class VistaPrenotazione(QWidget):
         label_data.setFont(font_data)
         v_layout.addWidget(label_data)
 
+        label_orario = QLabel("Orario: {}:00    Numero ore: {}".format(self.controller.get_orario_prenotazione(),
+                                                                 self.controller.get_numero_ore_prenotazione()))
+        font_orario = label_orario.font()
+        font_orario.setPointSize(30)
+        label_orario.setFont(font_orario)
+        v_layout.addWidget(label_orario)
+
         label_att = QLabel("{}".format(self.controller.get_attrezzatura_prenotazione()))
         font_att = label_att.font()
         font_att.setPointSize(30)
