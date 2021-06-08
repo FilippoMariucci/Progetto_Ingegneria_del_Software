@@ -27,7 +27,7 @@ class VistaInserisciPrenotazione(QWidget):
         if os.path.isfile('ListaClienti/data/lista_clienti_salvata.pickle'):
             with open('ListaClienti/data/lista_clienti_salvata.pickle', 'rb') as f:
                 self.lista_clienti_salvata = pickle.load(f)
-            self.lista_clienti_abbonati = [c for c in self.lista_clienti_salvata ]
+            self.lista_clienti_abbonati = [c for c in self.lista_clienti_salvata]
             for cliente in self.lista_clienti_abbonati:
                 item = QStandardItem()
                 item.setText(cliente.nome + " " + cliente.cognome)
