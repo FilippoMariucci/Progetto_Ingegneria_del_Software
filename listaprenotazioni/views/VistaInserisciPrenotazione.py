@@ -211,18 +211,27 @@ class VistaInserisciPrenotazione(QWidget):
             try:
                 date = datetime.strptime(data, '%d/%m/%Y')
                 attuale = datetime.now()
-                if date >= attuale:
-                    self.controller.aggiungi_prenotazione(
-                        Prenotazione((cliente.cognome + cliente.nome).lower(), cliente, impianto, data, att, k, num_ore,
-                                     totale))
-                    impianto.prenota()
-                    with open('ListaImpianti/data/Lista_Impianti_salvata.pickle', 'wb') as f:
-                        pickle.dump(self.lista_impianti_salvata, f, pickle.HIGHEST_PROTOCOL)
-                    self.callback()
-                    self.close()
-                else:
-                    QMessageBox.critical(self, 'Errore', 'La data inserita è passata', QMessageBox.Ok,
+                if orario + num_ore > 10:
+                    QMessageBox.critical(self, 'Errore', "La quantità di ore selezionate superano l'orario di chiusura."
+                                                         "Per favore modificare la quantità selezionata", QMessageBox.Ok,
                                          QMessageBox.Ok)
+                else:
+                    if date >= attuale:
+                        self.controller.aggiungi_prenotazione(
+                            Prenotazione((cliente.cognome + cliente.nome).lower(), cliente, impianto, data, att, k, num_ore,
+                                     totale))
+                        impianto.prenota()
+                        with open('ListaImpianti/data/Lista_Impianti_salvata.pickle', 'wb') as f:
+                            pickle.dump(self.lista_impianti_salvata, f, pickle.HIGHEST_PROTOCOL)
+                        self.callback()
+                        self.close()
+
+                    else:
+                        QMessageBox.critical(self, 'Errore', 'La data inserita è passata', QMessageBox.Ok,
+                                         QMessageBox.Ok)
+
+
+
             except:
                 QMessageBox.critical(self, 'Errore', 'Inserisci la data nel formato richiesto: dd/MM/yyyy',
                                      QMessageBox.Ok,
