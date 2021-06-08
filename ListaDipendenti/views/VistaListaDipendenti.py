@@ -19,9 +19,15 @@ class VistaListaDipendenti(QWidget):
 
         buttons_layout = QVBoxLayout()
         open_button = QPushButton('Visualizza informazioni')
+        open_button.setStyleSheet(
+            'QPushButton {background-color: 	#E9CFEC ; color: black; border-style: outset;border-width: 6px;'
+            'border-radius: 15px;border-color: #FA8072;padding: 6px}')
         open_button.clicked.connect(self.show_selected_info)
         buttons_layout.addWidget(open_button)
         new_button = QPushButton("Inserisci dipendente")
+        new_button.setStyleSheet(
+            'QPushButton {background-color: 	#C3FDB8; color: black; border-style: outset;border-width: 6px;'
+            'border-radius: 15px;border-color: #3EB489;padding: 6px}')
         new_button.clicked.connect(self.show_new_dipendente)
         buttons_layout.addWidget(new_button)
         buttons_layout.addStretch()
@@ -46,7 +52,7 @@ class VistaListaDipendenti(QWidget):
         # Funzione che mostra a schermo le informazioni del cliente selezionato
 
     def show_selected_info(self):
-        if (len(self.list_view.selectedIndexes()) > 0):
+        if len(self.list_view.selectedIndexes()) > 0:
             selected = self.list_view.selectedIndexes()[0].row()
             dipendente_selezionato = self.controller.get_dipendente_by_index(selected)
             self.vista_dipendente = VistaDipendente(dipendente_selezionato, self.controller.elimina_dipendente_by_id,self.update_ui)

@@ -1,4 +1,4 @@
-class Dipendente():
+class Dipendente:
     def __init__(self, id, nome, cognome, data_di_nascita, luogo_di_nascita, codice_fiscale, telefono, email, licenza):
         super(Dipendente, self).__init__()
         self.id = id

@@ -1,13 +1,12 @@
-
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
-from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton, QSizePolicy, QHBoxLayout, QListView, QVBoxLayout
+from PyQt5.QtWidgets import QWidget, QPushButton, QHBoxLayout, QListView, QVBoxLayout
 
 from attrezzatura.views.VistaAttrezzatura import VistaAttrezzatura
 from listaattrezzatura.controller.ControllerListaAttrezzatura import ControllerListaAttrezzatura
 
 
 class VistaListaAttrezzature(QWidget):
-    def __init__(self, parent= None):
+    def __init__(self, parent=None):
         super(VistaListaAttrezzature, self).__init__(parent)
 
         self.Controller = ControllerListaAttrezzatura()
@@ -26,16 +25,18 @@ class VistaListaAttrezzature(QWidget):
         self.list_view.setModel(self.listview_Model)
         h_layout.addWidget(self.list_view)
 
-
         buttons_layout = QVBoxLayout()
         open_buttons = QPushButton("Visualizza informazioni")
+        open_buttons.setStyleSheet(
+            'QPushButton {background-color: 	#E9CFEC ; color: black; border-style: outset;border-width: 6px;'
+            'border-radius: 15px;border-color: #FA8072;padding: 6px}')
         open_buttons.clicked.connect(self.show_selected_info)
         buttons_layout.addWidget(open_buttons)
         buttons_layout.addStretch()
         h_layout.addLayout(buttons_layout)
 
         self.setLayout(h_layout)
-        self.resize(600,300)
+        self.resize(600, 400)
         self.setWindowTitle('Lista Attrezzature')
 
     def closeEvent(self, event):
@@ -45,8 +46,8 @@ class VistaListaAttrezzature(QWidget):
 
     # Metodo che permette di visualizzare un Impianti attraverso l'indice
     def show_selected_info(self):
-        if (len(self.list_view.selectedIndexes()) > 0):
+        if len(self.list_view.selectedIndexes()) > 0:
             selected = self.list_view.selectedIndexes()[0].row()
             attrezzatura_selezionata = self.Controller.get_attrezzatura_by_index(selected)
-            self.vista_attrezzature= VistaAttrezzatura(attrezzatura_selezionata)
+            self.vista_attrezzature = VistaAttrezzatura(attrezzatura_selezionata)
             self.vista_attrezzature.show()

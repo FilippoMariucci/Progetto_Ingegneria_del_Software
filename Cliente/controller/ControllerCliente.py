@@ -1,4 +1,4 @@
-class ControllerCliente():
+class ControllerCliente:
     def __init__(self, cliente):
         self.model = cliente
 

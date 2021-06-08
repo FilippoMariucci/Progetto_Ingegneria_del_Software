@@ -1,14 +1,12 @@
-
-
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
-from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton, QSizePolicy, QHBoxLayout, QListView, QVBoxLayout
+from PyQt5.QtWidgets import QWidget, QPushButton, QHBoxLayout, QListView, QVBoxLayout
 
 from Impianti.views.VistaImpianti import VistaImpianti
 from ListaImpianti.Controller.ControllerListaImpianti import ControllerListaImpianti
 
 
 class VistaListaImpianti(QWidget):
-    def __init__(self, parent= None):
+    def __init__(self, parent=None):
         super(VistaListaImpianti, self).__init__(parent)
 
         self.Controller = ControllerListaImpianti()
@@ -27,16 +25,18 @@ class VistaListaImpianti(QWidget):
         self.list_view.setModel(self.listview_Model)
         h_layout.addWidget(self.list_view)
 
-
         buttons_layout = QVBoxLayout()
         open_buttons = QPushButton("Visualizza Informazioni")
+        open_buttons.setStyleSheet \
+            ('QPushButton {background-color: 	#E9CFEC ; color: black; border-style: outset;border-width: 6px;'
+             'border-radius: 15px;border-color: #FA8072;padding: 6px}')
         open_buttons.clicked.connect(self.show_selected_info)
         buttons_layout.addWidget(open_buttons)
         buttons_layout.addStretch()
         h_layout.addLayout(buttons_layout)
 
         self.setLayout(h_layout)
-        self.resize(600,300)
+        self.resize(700, 500)
         self.setWindowTitle('Lista Impianti')
 
     def closeEvent(self, event):
@@ -46,8 +46,8 @@ class VistaListaImpianti(QWidget):
 
     # Metodo che permette di visualizzare un Impianti attraverso l'indice
     def show_selected_info(self):
-        if (len(self.list_view.selectedIndexes()) > 0):
+        if len(self.list_view.selectedIndexes()) > 0:
             selected = self.list_view.selectedIndexes()[0].row()
             impianto_selezionato = self.Controller.get_impianto_by_index(selected)
-            self.vista_impinti= VistaImpianti(impianto_selezionato)
+            self.vista_impinti = VistaImpianti(impianto_selezionato)
             self.vista_impinti.show()

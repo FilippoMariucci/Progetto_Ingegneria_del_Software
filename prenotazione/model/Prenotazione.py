@@ -1,4 +1,4 @@
-class Prenotazione():
+class Prenotazione:
     def __init__(self, id, cliente, impianto, data, attrezzatura, orario, num_ore, totale):
         self.id = id
         self.cliente = cliente
@@ -8,8 +8,3 @@ class Prenotazione():
         self.orario = orario
         self.num_ore = num_ore
         self.totale = totale
-
-
-
-
-

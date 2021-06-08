@@ -1,11 +1,10 @@
-class ControllerAttrezzatura():
+class ControllerAttrezzatura:
     def __init__(self, attrezzatura):
         self.model = attrezzatura
 
-    #Restituisce il nome dell'Impianti
+    # Restituisce il nome dell'Impianti
     def get_nome_attrezzatura(self):
         return self.model.nome
-
 
     # Inseriamo un place-holder (le due parentesi graffe dentro gli apici);
     # quando richiameremo il metodo al posto delle graffe verrà inserito il prezzo dell'Impianti

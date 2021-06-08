@@ -1,3 +1,4 @@
+from PyQt5 import QtCore, QtGui
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QSpacerItem, QSizePolicy, QPushButton
 
 from Dipendente.controller.ControllerDipendente import ControllerDipendente
@@ -17,7 +18,8 @@ class VistaDipendente(QWidget):
         label_nome = QLabel(self.controller.get_nome_dipendente() + " " + self.controller.get_cognome_dipendente())
         font_nome = label_nome.font()
         font_nome.setPointSize(30)
-        label_nome.setFont(font_nome)
+        label_nome.setAlignment(QtCore.Qt.AlignCenter)
+        label_nome.setFont(QtGui.QFont("Times New Roman", 24, QtGui.QFont.Bold))
         v_layout.addWidget(label_nome)
 
         v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
@@ -32,6 +34,9 @@ class VistaDipendente(QWidget):
         v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
         btn_elimina = QPushButton("Elimina")
+        btn_elimina.setStyleSheet(
+            'QPushButton {background-color: 	#FF0000 ; color: black; border-style: outset;border-width: 4px;'
+            'border-radius: 15px;border-color: #FA8072;padding: 4px}')
         btn_elimina.clicked.connect(self.elimina_dipendente_click)
         v_layout.addWidget(btn_elimina)
 
@@ -44,7 +49,7 @@ class VistaDipendente(QWidget):
         label = QLabel(text)
         font = label.font()
         font.setPointSize(17)
-        label.setFont(font)
+        label.setFont(QtGui.QFont("Times New Roman", 16))
         return label
 
     # Funzione che elimina il dipendente successivamente al click sul bottone "Elimina"

@@ -1,7 +1,7 @@
 from ListaClienti.model.ListaClienti import ListaClienti
 
 
-class ControllerListaClienti():
+class ControllerListaClienti:
     def __init__(self):
         super(ControllerListaClienti, self).__init__()
         self.model = ListaClienti()

@@ -1,8 +1,8 @@
-class ControllorImpianto():
+class ControllorImpianto:
     def __init__(self, impianto):
         self.model = impianto
 
-    #Restituisce il nome dell'Impianti
+    # Restituisce il nome dell'Impianti
     def get_nome_impianto(self):
         return self.model.nome
 

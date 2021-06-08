@@ -2,7 +2,7 @@
 from datetime import datetime
 
 
-class ControllerAbbonamento():
+class ControllerAbbonamento:
     def __init__(self, abbonamento):
         self.model = abbonamento
 

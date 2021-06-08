@@ -25,6 +25,9 @@ class VistaInserisciDipendente(QWidget):
         self.v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
         btn_ok = QPushButton("OK")
+        btn_ok.setStyleSheet(
+            "background-color: #F5E216; border-style: outset;border-width: 6px;"
+            "border-radius: 15px;border-color: #F0E68C;padding: 2px;")
         btn_ok.clicked.connect(self.add_dipendente)
         self.v_layout.addWidget(btn_ok)
 

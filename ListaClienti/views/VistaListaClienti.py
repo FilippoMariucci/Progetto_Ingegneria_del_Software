@@ -19,6 +19,9 @@ class VistaListaClienti(QWidget):
 
         buttons_layout = QVBoxLayout()
         open_button = QPushButton("Visualizza informazioni")
+        open_button.setStyleSheet(
+            'QPushButton {background-color: 	#E9CFEC ; color: black; border-style: outset;border-width: 6px;'
+            'border-radius: 15px;border-color: #FA8072;padding: 6px}')
         open_button.clicked.connect(self.show_selected_info)
         buttons_layout.addWidget(open_button)
 
@@ -26,19 +29,23 @@ class VistaListaClienti(QWidget):
         new_button.clicked.connect(self.show_new_cliente)
         buttons_layout.addWidget(new_button)
         buttons_layout.addStretch()
+        new_button.setStyleSheet(
+            'QPushButton {background-color: 	#C3FDB8; color: black; border-style: outset;border-width: 6px;'
+            'border-radius: 15px;border-color: #3EB489;padding: 6px}')
         h_layout.addLayout(buttons_layout)
 
         self.setLayout(h_layout)
-        self.resize(600, 300)
+        self.resize(600, 400)
         self.setWindowTitle("Lista Clienti")
 
     # Funzione che mostra a schermo le informazioni del cliente selezionato
     def show_selected_info(self):
-     if (len(self.list_view.selectedIndexes()) > 0):
-        selected = self.list_view.selectedIndexes()[0].row()
-        cliente_selezionato = self.controller.get_cliente_by_index(selected)
-        self.vista_cliente = VistaCliente(cliente_selezionato, self.controller.elimina_cliente_by_id, self.update_ui)
-        self.vista_cliente.show()
+        if (len(self.list_view.selectedIndexes()) > 0):
+            selected = self.list_view.selectedIndexes()[0].row()
+            cliente_selezionato = self.controller.get_cliente_by_index(selected)
+            self.vista_cliente = VistaCliente(cliente_selezionato, self.controller.elimina_cliente_by_id,
+                                              self.update_ui)
+            self.vista_cliente.show()
 
     def show_new_cliente(self):
         self.vista_inserisci_cliente = VistaInserisciCliente(self.controller, self.update_ui)

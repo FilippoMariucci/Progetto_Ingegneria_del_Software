@@ -1,7 +1,7 @@
 from listaprenotazioni.model.ListaPrenotazioni import ListaPrenotazioni
 
 
-class ControllerListaPrenotazioni():
+class ControllerListaPrenotazioni:
     def __init__(self):
         self.model = ListaPrenotazioni()
 

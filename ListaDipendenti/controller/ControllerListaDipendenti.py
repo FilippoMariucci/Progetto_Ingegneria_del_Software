@@ -1,7 +1,7 @@
 from ListaDipendenti.model.ListaDipendenti import ListaDipendenti
 
 
-class ControllerListaDipendenti():
+class ControllerListaDipendenti:
     def __init__(self):
         super(ControllerListaDipendenti, self).__init__()
         self.model = ListaDipendenti()

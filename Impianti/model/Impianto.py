@@ -1,11 +1,7 @@
-import os
-import pickle
+class Impianto:
 
-
-class Impianto():
-
-   # Costruttore con le informazioni di un Impianti
-    def __init__(self, id, nome, tipo, posizione, prezzo) :
+    # Costruttore con le informazioni di un Impianti
+    def __init__(self, id, nome, tipo, posizione, prezzo):
         super(Impianto, self).__init__()
         self.id = id
         self.nome = nome
@@ -17,6 +13,7 @@ class Impianto():
     # Funzione che ci indica se un Impianti è disponibile o no
     def is_disponibile(self):
         return self.disponibilità
+
     # Funzione che rende l'impiato prenotato non più disponibile
     def prenota(self):
         self.disponibilità = False

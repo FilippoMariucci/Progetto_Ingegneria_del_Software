@@ -6,8 +6,6 @@ from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QComboBox, QSpacerItem, QSizePolicy, QPushButton, \
     QMessageBox
 
-from datetime import datetime
-
 from prenotazione.model.Prenotazione import Prenotazione
 
 
@@ -166,6 +164,9 @@ class VistaInserisciPrenotazione(QWidget):
         v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
         btn_ok = QPushButton("OK")
+        btn_ok.setStyleSheet(
+            "background-color: #F5E216; border-style: outset;border-width: 6px;"
+            "border-radius: 15px;border-color: #F0E68C;padding: 2px;")
         btn_ok.clicked.connect(self.add_prenotazione)
         v_layout.addWidget(btn_ok)
 
@@ -213,13 +214,15 @@ class VistaInserisciPrenotazione(QWidget):
                 attuale = datetime.now()
                 if orario + num_ore > 10:
                     QMessageBox.critical(self, 'Errore', "La quantità di ore selezionate superano l'orario di chiusura."
-                                                         "Per favore modificare la quantità selezionata", QMessageBox.Ok,
+                                                         "Per favore modificare la quantità selezionata",
+                                         QMessageBox.Ok,
                                          QMessageBox.Ok)
                 else:
                     if date >= attuale:
                         self.controller.aggiungi_prenotazione(
-                            Prenotazione((cliente.cognome + cliente.nome).lower(), cliente, impianto, data, att, k, num_ore,
-                                     totale))
+                            Prenotazione((cliente.cognome + cliente.nome).lower(), cliente, impianto, data, att, k,
+                                         num_ore,
+                                         totale))
                         impianto.prenota()
                         with open('ListaImpianti/data/Lista_Impianti_salvata.pickle', 'wb') as f:
                             pickle.dump(self.lista_impianti_salvata, f, pickle.HIGHEST_PROTOCOL)
@@ -228,7 +231,7 @@ class VistaInserisciPrenotazione(QWidget):
 
                     else:
                         QMessageBox.critical(self, 'Errore', 'La data inserita è passata', QMessageBox.Ok,
-                                         QMessageBox.Ok)
+                                             QMessageBox.Ok)
 
 
 

@@ -31,6 +31,9 @@ class VistaAbbonamento(QWidget):
             self.text_scadenza = QLineEdit()
             v_layout.addWidget(self.text_scadenza)
             btn_inserisci = QPushButton("Inserisci il nuovo abbonamento")
+            btn_inserisci.setStyleSheet(
+                'QPushButton {background-color: 	#C3FDB8; color: black; border-style: outset;border-width: 6px;'
+                'border-radius: 15px;border-color: #3EB489;padding: 6px}')
             btn_inserisci.clicked.connect(self.add_abbonamento_click)
             v_layout.addWidget(btn_inserisci)
 

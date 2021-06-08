@@ -1,3 +1,4 @@
+from PyQt5 import QtCore, QtGui
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QSpacerItem, QSizePolicy, QPushButton
 
 from Cliente.controller.ControllerCliente import ControllerCliente
@@ -14,33 +15,40 @@ class VistaCliente(QWidget):
         self.elimina_cliente = elimina_cliente
         self.elimina_callback = elimina_callback
 
-    # Definiamo un layout verticale e la andiamo a argomentare con le lable(caselle di testo)
-    # in cui scriviamo il nome, cognome, ... del cliente
+        # Definiamo un layout verticale e la andiamo a argomentare con le lable(caselle di testo)
+        # in cui scriviamo il nome, cognome, ... del cliente
         v_layout = QVBoxLayout()
 
         label_nome = QLabel(self.controller.get_nome_cliente() + " " + self.controller.get_cognome_cliente())
         font_nome = label_nome.font()
         font_nome.setPointSize(30)
-        label_nome.setFont(font_nome)
+        label_nome.setAlignment(QtCore.Qt.AlignCenter)
+        label_nome.setFont(QtGui.QFont("Times New Roman", 24, QtGui.QFont.Bold))
         v_layout.addWidget(label_nome)
 
-    # Aggiungiamo un QSpaceItem(spazio) che si espande all'allargare della finestra
+        # Aggiungiamo un QSpaceItem(spazio) che si espande all'allargare della finestra
         v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
         v_layout.addWidget(self.get_label_info("Codice Fiscale", self.controller.get_codice_fiscale_cliente()))
         v_layout.addWidget(self.get_label_info("Telefono", self.controller.get_telefono_cliente()))
         v_layout.addWidget(self.get_label_info("Età", self.controller.get_data_di_nascita_cliente()))
 
-    # Andiamo ad aggiungere un altro QSpaceItem
+        # Andiamo ad aggiungere un altro QSpaceItem
         v_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
         btn_abbonamento = QPushButton("Visualizza abbonamento")
+        btn_abbonamento.setStyleSheet(
+            'QPushButton {background-color: 	#E9CFEC ; color: black; border-style: outset;border-width: 4px;'
+            'border-radius: 15px;border-color: #FA8072;padding: 4px}')
         btn_abbonamento.clicked.connect(self.check_abbonamento)
         v_layout.addWidget(btn_abbonamento)
 
         v_layout.addItem(QSpacerItem(20, 20, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
         btn_elimina = QPushButton("Elimina cliente")
+        btn_elimina.setStyleSheet(
+            'QPushButton {background-color: 	#FF0000 ; color: black; border-style: outset;border-width: 4px;'
+            'border-radius: 15px;border-color: #FA8072;padding: 4px}')
         btn_elimina.clicked.connect(self.elimina_cliente_click)
         v_layout.addWidget(btn_elimina)
 
@@ -52,8 +60,8 @@ class VistaCliente(QWidget):
     def get_label_info(self, testo, valore):
         current_label = QLabel("{}: {}".format(testo, valore))
         current_font = current_label.font()
+        current_label.setFont(QtGui.QFont("Times New Roman", 16))
         current_font.setPointSize(17)
-        current_label.setFont(current_font)
         return current_label
 
     # Funzione dove richiameremo VistaAbbonamento e gli passiamo .get_abbonamento_cliente()
