@@ -1,5 +1,6 @@
 import os
 import pickle
+from datetime import datetime
 
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QComboBox, QSpacerItem, QSizePolicy, QPushButton, \
@@ -27,8 +28,7 @@ class VistaInserisciPrenotazione(QWidget):
         if os.path.isfile('ListaClienti/data/lista_clienti_salvata.pickle'):
             with open('ListaClienti/data/lista_clienti_salvata.pickle', 'rb') as f:
                 self.lista_clienti_salvata = pickle.load(f)
-            self.lista_clienti_abbonati = [c for c in self.lista_clienti_salvata if c.get_abbonamento()]
-            for cliente in self.lista_clienti_abbonati:
+            for cliente in self.lista_clienti_salvata:
                 item = QStandardItem()
                 item.setText(cliente.nome + " " + cliente.cognome)
                 item.setEditable(False)
@@ -185,5 +185,3 @@ class VistaInserisciPrenotazione(QWidget):
                 QMessageBox.critical(self, 'Errore', 'Inserisci la data nel formato richiesto: dd/MM/yyyy',
                                      QMessageBox.Ok,
                                      QMessageBox.Ok)
-
-
