@@ -6,12 +6,12 @@ class Attrezzatura:
         self.id = id
         self.nome = nome
         self.prezzo = prezzo
-        self.disponibilita = True
+        self.disponibilità = True
 
     # Funzione che ci indica se un Impianti è disponibile o no
     def is_disponibile(self):
-        return self.disponibilita
+        return self.disponibilità
 
     # Funzione che rende l'impiato prenotato non più disponibile
     def prenota(self):
-        self.disponibilita = False
+        self.disponibilità = False
